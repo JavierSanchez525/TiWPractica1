@@ -213,20 +213,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="header-bottom-right">
                     <div class="search">
-                        <input
-                            type="text"
-                            name="s"
-                            class="textbox"
-                            value="Search"
-                            onfocus="this.value = '';"
-                            onblur="if (this.value == '') {this.value = 'Search';}"
-                        />
-                        <input
-                            type="submit"
-                            value="Subscribe"
-                            id="submit"
-                            name="submit"
-                        />
+                    <h4> Buscador por título y descripción</h4>
+                        <form action="controlador" method="post" >
+						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
+    					Buscar
+    					<input type="text" name="consulta">
+    					<input type="submit" value="Buscar" name="submit">
+						</form>
                         <div id="response"></div>
                     </div>
                     <div class="tag-list">

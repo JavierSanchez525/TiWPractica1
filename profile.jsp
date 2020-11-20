@@ -48,7 +48,7 @@
                     			 |
                     			 <li><a href="checkout.html">Checkout</a></li>
                     			 |
-                    			 <li><a>Log off</a></li>
+                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
                     	<%	} else { %>
                     			<li><a href="login.html">Log In</a></li>
           						|
@@ -253,26 +253,32 @@
         <div class="register_account">
             <div class="wrap">
                 <h4 class="title">Información de usuario</h4>
-                
                 <pre>	<strong>Nombre:</strong>	<%out.print(session.getAttribute("nombre"));%> 		</pre>
                 <pre>	<strong>Apellido:</strong>	<%out.print(session.getAttribute("apellido"));%> 	</pre>
                 <pre>	<strong>Email:</strong>		<%out.print(session.getAttribute("email"));%> 		</pre>
-                <pre>	<strong>Ciudad:</strong>	<%out.print(session.getAttribute("ciudad"));%> 		</pre>
+                <pre>	<strong>Ciudad:</strong>		<%out.print(session.getAttribute("ciudad"));%> 		</pre>
                 <br />
                 
-                <h4 class="title">Modificar información de usuario</h4>    
+                <h4 class="title">Modificar información de usuario</h4>
+                <%
+                	if(request.getAttribute("modificacionUsuario") == "success") { %>
+                		<h5 style="color:green;padding:10px;"> Información modificada con éxito</h5>
+                <%	}
+                	if(request.getAttribute("modificacionUsuario") == "fail") { %>
+                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
+                <%	} %>    
                 <div>
           			<div class="wrap">
     		   			<form action="controlador" method="post" name="modify" id="modifyUser-form">
     			 			<div class="col_1_of_2 span_1_of_2">
 		   			 			<div><input type="text" placeholder="Nuevo nombre" name="newName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo nombre';}"></div>
-		    					<div><input type="text" placeholder="Nuevo E-Mail" name="newEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo E-Mail';}"></div>
-		    					<div><input required type="text" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>
+		    					<div><input type="password" placeholder="Nueva contraseña" name="newPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva contraseña';}"></div>
+		    					<div><input required type="text" placeholder="E-Mail actual" name="actualEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
 		    	 			</div>
 		    	  			<div class="col_1_of_2 span_1_of_2">	
 		    					<div><input type="text" placeholder="Nuevo apellido" name="newSurname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo apellido';}"></div>		        
 		          				<div><input type="text" placeholder="Nueva ciudad" name="newCity" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva ciudad';}"></div>
-		           				<div><input type="text" placeholder="Nueva contraseña" name="newPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva contraseña';}"></div>
+		    					<div><input required type="password" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
 		           				<input type="hidden" name="accion" value="modifyUsuario" />
 		           				<div>
 		          				</div>
@@ -284,11 +290,30 @@
     			</div>
     			<br />
                 
-                <h4 class="title">Darse de baja</h4>  
+                <h4 class="title">Darse de baja</h4>
                 <strong><p style="color:red;"> Una vez tramitada la baja, no se puede dar marcha atrás. </p></strong>
+          		<%
+                	if(request.getAttribute("eliminacionUsuario") == "profile.jsp") { %>
+                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
+                <%	} %>    
+                <div>
+          			<div class="wrap">
+    		   			<form action="controlador" method="post" name="delete" id="deleteUser-form">
+    			 			<div class="col_1_of_2 span_1_of_2">
+		    					<div><input required type="text" placeholder="E-Mail actual" name="delEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
+		    	 			</div>
+		    	  			<div class="col_1_of_2 span_1_of_2">	
+		    					<div><input required type="password" placeholder="Contraseña actual" name="delPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
+		           				<input type="hidden" name="accion" value="deleteUsuario" />
+		           				<div>
+		          				</div>
+		          			</div>
+		          			<input type="submit" name="Submit" class="grey" value="Eliminar"/>
+		    				<div class="clear"></div>
+		    			</form>
+    				</div>
+    			</div>
                 <br />
-                <button>Eliminar</button>
-                <br /><br />
                 
                 <h4 class="title">Tus productos</h4>
                 <p>boi</p>

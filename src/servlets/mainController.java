@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import managers.UserManager;
 import database.Producto;
@@ -89,11 +90,31 @@ public class mainController extends HttpServlet {
 				System.out.println("Controlador a modificar usuario");
 				UserManager mu = new UserManager("prueba1");
 				String usuarioToModify = mu.modifyUser(request, response);
+				request.setAttribute("modificacionUsuario", usuarioToModify);
 				
-				RequestDispatcher r5 = request.getRequestDispatcher(usuarioToModify);
+				RequestDispatcher r5 = request.getRequestDispatcher("profile.jsp");
 				r5.forward(request, response);
 				break;
 				
+			case "deleteUsuario":
+				System.out.println("Controlador a borrar usuario");
+				UserManager du = new UserManager("prueba1");
+				String usuarioToDelete = du.deleteUser(request, response);
+				request.setAttribute("eliminacionUsuario", usuarioToDelete);
+				
+				RequestDispatcher rdu = request.getRequestDispatcher(usuarioToDelete);
+				rdu.forward(request, response);
+				break;
+				
+			case "logOffUsuario":
+				System.out.println("Controlador a cerrar sesión");
+				HttpSession currentSession = request.getSession();
+				currentSession.invalidate();
+				
+				RequestDispatcher rlo = request.getRequestDispatcher("index.jsp");
+				rlo.forward(request, response);
+				break;
+			
 			case "mostrarTodos":
 				ProductoManager pm1 = new ProductoManager("prueba1");
 				List<Producto> plista1=pm1.mostrarTodos();

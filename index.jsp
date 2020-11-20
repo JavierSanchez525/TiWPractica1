@@ -54,12 +54,12 @@
                 <div class="cssmenu">
                     <ul>
                     	<%
-                    		if(session.getAttribute("email") != null) { %>
+                    		if(session.getAttribute("email") != null) { %> 
                     			 <li><a href="profile.jsp">Account</a></li> 
                     			 |
                     			 <li><a href="checkout.html">Checkout</a></li>
                     			 |
-                    			 <li><a>Log off</a></li>
+                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
                     	<%	} else { %>
                     			<li><a href="login.html">Log In</a></li>
           						|

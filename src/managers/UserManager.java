@@ -166,9 +166,105 @@ public class UserManager {
 		}	
 	}
 	
-	@SuppressWarnings("unchecked")
 	public String modifyUser(HttpServletRequest request, HttpServletResponse response) {
+		EntityManager em = emf.createEntityManager();
+		HttpSession currentSession = request.getSession();
+		
+		String sessionPass = (String)currentSession.getAttribute("password");
+		String sessionEmail = (String)currentSession.getAttribute("email");
+		
+		String currentPass = request.getParameter("actualPassword");
+		String currentEmail = request.getParameter("actualEmail");
+		
+		if (sessionPass.equals(currentPass) && sessionEmail.equals(currentEmail)){
+			Usuario user = em.find(Usuario.class, currentSession.getAttribute("email"));
 			
-		return "";
+			String password = request.getParameter("newPassword");
+			String name = request.getParameter("newName");
+			String surname = request.getParameter("newSurname");
+			String city = request.getParameter("newCity");
+	
+			//System.out.println("newPassword: " + password + ", newName: " + name + ", newSurname: " + surname + ", newCity: " + city);
+			
+			try {
+				em.getTransaction().begin();
+			
+				if(!password.isEmpty()) {
+					user.setPassword(password);
+					currentSession.setAttribute("password", password);
+				}
+				if(!name.isEmpty()) {
+					user.setNombre(name);
+					currentSession.setAttribute("nombre", name);
+				}
+				if(!surname.isEmpty()) {
+					user.setApellido(surname);
+					currentSession.setAttribute("apellido", surname);
+				}
+				if(!city.isEmpty()) {
+					user.setCiudad(city);
+					currentSession.setAttribute("ciudad", city);
+				}
+				//System.out.println("PasswordAttribute:" + currentSession.getAttribute("password") + ", NameAttribute:" + currentSession.getAttribute("nombre") + ", SurnameAttribute:" + currentSession.getAttribute("apellido"));
+
+				em.getTransaction().commit();
+			} catch (Exception ex) {
+				try {
+					if (em.getTransaction().isActive()) {
+						em.getTransaction().rollback();
+					}
+				} catch (Exception ex2) {
+					ex.printStackTrace();
+					throw ex2;
+				}
+				throw ex;
+			} finally {
+				em.close();
+			}
+			
+			return "success";
+			
+		} else {
+			return "fail";
+		}
+	}
+	
+	public String deleteUser(HttpServletRequest request, HttpServletResponse response) {
+		EntityManager em = emf.createEntityManager();
+		HttpSession currentSession = request.getSession();
+		
+		String sessionPass = (String)currentSession.getAttribute("password");
+		String sessionEmail = (String)currentSession.getAttribute("email");
+		
+		String currentPass = request.getParameter("delPassword");
+		String currentEmail = request.getParameter("delEmail");
+		
+		if (sessionPass.equals(currentPass) && sessionEmail.equals(currentEmail)){
+			Usuario user = em.find(Usuario.class, currentSession.getAttribute("email"));
+			currentSession.invalidate();
+			
+			try {
+				em.getTransaction().begin();
+				em.remove(user);
+				em.getTransaction().commit();
+			} catch (Exception ex) {
+				try {
+					if (em.getTransaction().isActive()) {
+						em.getTransaction().rollback();
+					}
+				} catch (Exception ex2) {
+					ex.printStackTrace();
+					throw ex2;
+				}
+				throw ex;
+			} finally {
+				em.close();
+			}
+			
+			return "index.jsp";
+			
+		} else {
+			return "profile.jsp";
+		}
 	}
 }

@@ -215,8 +215,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="search">
                         <form action="controlador" method="post" >
 						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="paginaBuscador">
-    					Acceder al buscador
-    					<input type="submit" value="Buscar" name="submit">
+    					<div class="letrasChulis2"><a href="paginaBuscador.jsp" style="color:rgb(131,131,131);">Buscador</a></div>
+    					<input type="submit" value="Buscar" name="submit" style="float:right;">
 						</form>
                         <div id="response"></div>
                     </div>

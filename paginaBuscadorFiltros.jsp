@@ -253,30 +253,79 @@ Object lista = request.getAttribute("lista");
 		<% }
 	}
 }%>
-        <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
-        <div class="letrasChulis">Buscador sencillo: Busca por nombre y descripción:</div>
-       <div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <br><br><br><br>
-        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo:</div>
+        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo y filtra por categoría y precio:</div>
 		<div class="search">
                         <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzado">
+						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzadoFiltro">
     					Buscar
-    					<input type="text" name="consulta">
+    					<input type="text" name="Fconsulta">
     					<input type="submit" value="Buscar" name="submit">
     					</form>
                         <div id="response"></div>
         </div>
-        <form action="controlador" method="post"><button class="botonTIW" name="accion" value="paginaBuscadorFiltros">Añade filtros</button></form>
-    	
+        <select name="Fcategoria">
+   			<option selected value=null> Categoría </option>
+       		<optgroup label="Mujeres"> 
+       			<option value="MujerCamisetas">Camisetas</option> 
+       			<option value="MujerCamisas">Camisas</option> 
+       			<option value="MujerPantalones">Pantalones</option> 
+       			<option value="MujerAbrigos">Abrigos</option> 
+       			<option value="MujerSudaderas">Sudaderas</option> 
+       			<option value="MujerZapatillas">Zapatillas</option> 
+       			<option value="MujerZapatos">Zapatos</option> 
+   			</optgroup> 
+   			<optgroup label="Hombres"> 
+       			<option value="HombreCamisetas">Camisetas</option> 
+       			<option value="HombreCamisas">Camisas</option> 
+       			<option value="HombrePantalones">Pantalones</option> 
+       			<option value="HombreAbrigos">Abrigos</option> 
+       			<option value="HombreSudaderas">Sudaderas</option> 
+       			<option value="HombreZapatillas">Zapatillas</option> 
+       			<option value="HombreZapatos">Zapatos</option> 
+   			</optgroup> 
+   			<optgroup label="Accesorios"> 
+       			<option value="AccesoriosGorras">Gorras, gorros y sombreros</option> 
+       			<option value="AccesoriosPendientes">Pendientes</option> 
+       			<option value="AccesoriosColgantes">Colgantes y pulseras</option> 
+       			<option value="AccesoriosCalcetines">Calcetines</option>
+   			</optgroup> 
+		</select>
+		<select name="precioMinimo">
+   			<option selected value=0> Precio Mínimo </option>
+       			<option value=5>5</option> 
+       			<option value=10>10</option> 
+       			<option value=15>15</option> 
+       			<option value=20>20</option> 
+       			<option value=25>25</option> 
+       			<option value=30>30</option> 
+       			<option value=40>40</option> 
+       			<option value=50>50</option> 
+       			<option value=60>60</option> 
+       			<option value=70>70</option> 
+       			<option value=80>80</option> 
+       			<option value=90>90</option> 
+       			<option value=100>100</option> 
+       			<option value=125>125</option> 
+       			<option value=150>150</option> 
+		</select>
+		<select name="precioMaximo">
+   			<option selected value=0> Precio Máximo </option>
+       			<option value=5>5</option> 
+       			<option value=10>10</option> 
+       			<option value=15>15</option> 
+       			<option value=20>20</option> 
+       			<option value=25>25</option> 
+       			<option value=30>30</option> 
+       			<option value=40>40</option> 
+       			<option value=50>50</option> 
+       			<option value=60>60</option> 
+       			<option value=70>70</option> 
+       			<option value=80>80</option> 
+       			<option value=90>90</option> 
+       			<option value=100>100</option> 
+       			<option value=125>125</option> 
+       			<option value=150>150</option> 
+		</select>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

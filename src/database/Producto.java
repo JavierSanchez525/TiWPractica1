@@ -17,9 +17,9 @@ import java.util.Date;
 	@NamedQuery(name="Producto.buscarSencillo", query="SELECT i FROM Producto i where i.titulo LIKE :consulta "
 			+ "OR i.descripcion LIKE :consulta"),
 	
-	@NamedQuery(name="Producto.buscarAvanzado", query="SELECT i FROM Producto i where i.id LIKE :consulta "
-			+ "OR i.fechaCompra LIKE :consulta OR i.titulo LIKE :consulta OR i.categoria LIKE :consulta "
-			+ "OR i.descripcion LIKE :consulta")// OR i.comprador LIKE :consulta OR i.vendedor LIKE :consulta")
+	//@NamedQuery(name="Producto.buscarAvanzado", query="SELECT i FROM Producto i where i.id LIKE :consulta "
+	//		+ "OR i.vendedor LIKE :consulta OR i.titulo LIKE :consulta OR i.categoria LIKE :consulta "
+	//		+ "OR i.descripcion LIKE :consulta OR i.comprador LIKE :consulta OR i.fechaCompra LIKE :consulta")
 	 })
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class Producto implements Serializable {
 	private byte[] imagen;
 
 	@Column(nullable=false, length=30)
-	private int precio;
+	private String precio;
 
 	@Column(nullable=false, length=100)
 	private String titulo;
@@ -101,11 +101,11 @@ public class Producto implements Serializable {
 		this.imagen = imagen;
 	}
 
-	public int getPrecio() {
+	public String getPrecio() {
 		return this.precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 

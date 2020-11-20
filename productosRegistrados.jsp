@@ -1,42 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List,java.util.ArrayList,database.*, java.util.List,java.util.ArrayList,managers.*;" %>
+<%@ page import="java.util.List,java.util.ArrayList,database.*;" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Productos</title>
+<title>Users</title>
 </head>
 <body>
-<h1> Producto maricon</h1>
-<h3> Buscador sencillito para toda la familia oiga </h3>
+<h1> Epicos usuarios yes</h1>
+<h3> Formulario para hacer una busqueda por putisimo nombre </h3>
 <form action="controlador" method="post" >
-	<input type="hidden" name="accion" value="buscarSencillo">
-    Busca en titulo y descripcion:
-    <input type="text" name="consulta">
+	<input type="hidden" name="accion" value="consultaUsuariosBBDD">
+    Que contenga en el titulo:
+    <input type="text" name="palabra">
     <input type="submit" value="Buscar" name="submit">
 </form>
-<h3> Mirame los productos niña barato barato </h3> <a href="controlador?accion=mostrarTodos">Ver todos los productos</a>
+<h3> Resultado o contenido en la base de datos </h3> <a href="controlador?accion=usuariosRegistrados">Ver todos los elementos</a>
 <% 
-List<Producto> elementos= new ArrayList<Producto>();
+List<Usuario> elementos= new ArrayList<Usuario>();
 Object lista = request.getAttribute("lista");
   if (lista != null){
 	if(lista instanceof List){
-		elementos = (List<Producto>) lista;
-		for(Producto elemento: elementos){ %>
-			<h5>Id:<%=elemento.getId() %> (Titulo: <%=elemento.getTitulo() %>) </h5>
+		 elementos = (List<Usuario>)lista;
+		for(Usuario elemento: elementos){ %>
+			<h5>Email:<%=elemento.getEmail() %> (Nombre: <%=elemento.getNombre() %>) </h5>
 		<% }
 	}
 }%>
 
-<h3> Buscador avanzado para los mas atrevidos PEGI 13 </h3>
-<form action="controlador" method="post" >
-	<input type="hidden" name="accion" value="buscarAvanzado">
-    Busca en cualquier campo:
-    <input type="text" name="consulta">
-    <input type="submit" value="Buscar" name="submit">
-</form>
-
-
+<h3> Resultado o contenido en la base de datos (Repetido otra forma de mostrar las imagenes) </h3> <a href="controlador?accion=usuariosRegistrados">Ver totos los elementos</a>
+<% 		for(Usuario elemento: elementos){ %>
+			<h5>Email:<%=elemento.getEmail() %> (Nombre: <%=elemento.getNombre() %>) </h5>
+	<% }
+%>
 </body>
 </html>

@@ -40,23 +40,8 @@ body{
 	-o-transition:all .2s linear; 
 	-ms-transition:all .2s linear;
 }
-.botonTIW {
-    border-radius: 20px;
-    background-color: rgb(208, 208, 208);
-    color: black;
-    border: 0.5px solid black;
-    cursor: pointer;
-    width: 100px;
-    margin-top: 25px;
-    display: block;
-}
 .header-top{
 	background:#4cb1ca;
-}
-.letrasChulis{
-	color:#A9A9A9;
-	font-size: 1.00em;
-	padding:10px;
 }
 .header-top-left{
 	width:54.5%;
@@ -147,7 +132,6 @@ body{
 	position: relative;
 	float:left;
 	margin:6px 20px 0 0;
-	padding:10px;
 }
 .search input[type="text"] {
 	border: none;
@@ -168,6 +152,7 @@ body{
 .search input[type="text"]:focus{
 	width:150px;
 }
+
 .search input[type="submit"] {
 	border: none;
 	text-indent: -9999px;
@@ -181,6 +166,7 @@ body{
 .search input[type="submit"]:active {
 	position:relative;
 }
+
 .tag-list{
 	float:left;
 }
@@ -311,6 +297,7 @@ body{
 	border-top: 20px solid transparent;
 	border-right:20px solid #323757;
 }
+
 /* Mobile */
 .icon1-trigger {
 	display: none;
@@ -679,7 +666,6 @@ ul.f-list span.f-text {
 }
 /*--footer-middle--*/
 .footer-middle{
-	margin-top: 10%;
 	padding:2% 0;
 }
 .footer-middle{
@@ -1004,6 +990,7 @@ input.inputbox, input.required, div.k2AccountPage input[type="text"] {
 p#login-form-remember{
 	float:left;
 }
+
 fieldset.input input[type="submit"] {
 	background:#555;
 	border: none;
@@ -1018,6 +1005,7 @@ fieldset.input input[type="submit"] {
 fieldset.input input[type="submit"]:hover, .button1 input[type="submit"]:hover{
 	text-decoration:underline;
 }
+
 .button1{
 	float:right;
 	margin-top: 6%;
@@ -1074,6 +1062,32 @@ table {
 .register_account form input[type="text"].number {
 	width: 69.8%;
 }
+.register_account form input[type="password"], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.register_account form input[type="password"]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+}
+.register_account form input[type="password"].code {
+	width: 15%;
+}
+.register_account form input[type="password"].number {
+	width: 69.8%;
+}
 p.terms a, p.note a {
 	text-decoration: underline;
 	color:#555;
@@ -1083,6 +1097,27 @@ p.terms {
 	font-size: 12px;
 	padding: 15px 0 0 15px;
 }
+input.grey{
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	background: #555;
+	font-size:0.95;
+	line-height: 16px;
+	text-transform: uppercase;
+	padding:10px 30px;
+	color: #FFF;
+	border: none;
+	float: left;
+	font-family: 'Exo 2', sans-serif;
+	outline:none;
+}
+
+input.grey:hover {
+	background: #4CB1CA;
+	color: #FFF;
+}
+
 button.grey{
 	display: inline-block;
 	text-decoration: none;

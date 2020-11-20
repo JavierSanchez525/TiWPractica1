@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,6 +40,12 @@
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
+                        <li class="active">
+                            <a href="profile.html">Account</a>
+                        </li>
+                        |
+                        <li><a href="checkout.html">Checkout</a></li>
+                        |
                         <li><a href="login.html">Log In</a></li>
                         |
                         <li><a href="register.html">Sign Up</a></li>
@@ -54,14 +58,14 @@
             <div class="wrap">
                 <div class="header-bottom-left">
                     <div class="logo">
-                        <a href="index.jsp"
+                        <a href="index.html"
                             ><img src="images/logo.png" alt=""
                         /></a>
                     </div>
                     <div class="menu">
                         <ul class="megamenu skyblue">
                             <li class="active grid">
-                                <a href="index.jsp">Home</a>
+                                <a href="index.html">Home</a>
                             </li>
                             <li>
                                 <a class="color4" href="womens.html">women</a>
@@ -158,7 +162,9 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="color6" href="other.html">Accesorios</a>
+                                <a class="color6" href="other.html"
+                                    >Accesorios</a
+                                >
                                 <div class="megapanel">
                                     <div class="col1">
                                         <div class="h_nav">
@@ -239,83 +245,14 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="login">
+        <div class="register_account">
             <div class="wrap">
-                <div class="col_1_of_login span_1_of_login">
-                    <h4 class="title">New Customers</h4>
-                    <p>
-						¿No tiene cuenta todavía? Registrese hoy mismo<br></br>
-						Con una cuenta propia podrá empezar a comprar y vender productos.<br><br>
-                    </p>
-                    <div class="button1">
-                        <a href="register.html"
-                            ><input
-                                type="submit"
-                                name="Submit"
-                                value="Create an Account"
-                        /></a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="col_1_of_login span_1_of_login">
-                    <div class="login-title">
-                        <h4 class="title">Usuarios Registrados</h4>
-                        <div id="loginbox" class="loginbox">
-                            <form
-                                action="controlador"
-                                method="post"
-                                name="login"
-                                id="login-form"
-                            >
-                                <fieldset class="input">
-                                	<input type = "hidden" name = "accion" value= "loginUsuario">
-                                    <p id="login-form-username">
-                                        <label for="modlgn_username"
-                                            >Email</label
-                                        >
-                                        <input required
-                                            id="modlgn_username"
-                                            type="text"
-                                            name="loginEmail"
-                                            class="inputbox"
-                                            size="18"
-                                            autocomplete="off"
-                                        />
-                                    </p>
-                                    <p id="login-form-password">
-                                        <label for="modlgn_passwd"
-                                            >Password</label
-                                        >
-                                        <input required
-                                            id="modlgn_passwd"
-                                            type="password"
-                                            name="loginPassword"
-                                            class="inputbox"
-                                            size="18"
-                                            autocomplete="off"
-                                        />
-                                    </p>
-                                    <div class="remember">
-                                        <p id="login-form-remember">
-                                            <label for="modlgn_remember"
-                                                ><a href="#"
-                                                    >¿Has olvidado tu contraseña?
-                                                </a></label
-                                            >
-                                        </p>
-                                        <input
-                                            type="submit"
-                                            name="Submit"
-                                            class="button"
-                                            value="Login"
-                                        />
-                                        <div class="clear"></div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <h4 class="title">Información de cuenta</h4>
+                <p>boi</p>
+                <br />
+                <h4 class="title">Tus productos</h4>
+                <p>boi</p>
+
                 <div class="clear"></div>
             </div>
         </div>

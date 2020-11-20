@@ -45,12 +45,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <li class="active">
-                            <a href="login.html">Account</a>
-                        </li>
-                        |
-                        <li><a href="checkout.html">Checkout</a></li>
-                        |
                         <li><a href="login.html">Log In</a></li>
                         |
                         <li><a href="register.html">Sign Up</a></li>
@@ -253,8 +247,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="register_account">
             <div class="wrap">
                 <h4 class="title">Create an Account</h4>
-                <form>
-                    <div class="col_1_of_2 span_1_of_2">
+                <form action="controlador" method="post" name="register" id="register-form">
+    			 	<div class="col_1_of_2 span_1_of_2">
+		   			 	<div><input required type="text" placeholder="Nombre" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre';}"></div>
+		    			<div><input required type="text" placeholder="E-Mail" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}"></div>
+		          		<div><input required type="text" placeholder="Ciudad" name="city" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ciudad';}"></div>
+		    	 	</div>
+		    	  	<div class="col_1_of_2 span_1_of_2">	
+		    			<div><input required type="text" placeholder="Apellido" name="surname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Apellido';}"></div>		        
+		          		<div><input required type="text" placeholder="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"></div>
+		           		<input type="hidden" name="accion" value="registerUsuario" />
+		           		<div>
+		          		</div>
+		          	</div>
+		          	<input type="submit" name="Submit" class="grey" value="Register" />
+		          	<p class="terms">
+                        By clicking 'Create Account' you agree to the
+                        <a href="delivery.html">Terms &amp; Conditions</a>.
+                    </p>
+		    		<div class="clear"></div>
+		    	</form>
+		    	<!--
+                <form action="controlador" method="post" name="register" id="register-form">
+                    <input type="hidden" name="accion" value="registerUsuario" />
+                    	<div class="col_1_of_2 span_1_of_2">
                         <div>
                             <input
                                 type="text"
@@ -302,23 +318,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 onblur="if (this.value == '') {this.value = 'Password';}"
                             />
                         </div>
-                        <div>
-                            <input
-                                type="text"
-                                value="Calle"
-                                name="calle"
-                                onfocus="this.value = '';"
-                                onblur="if (this.value == '') {this.value = 'Calle';}"
-                            />
-                        </div>
                     </div>
-                    <button class="grey">Submit</button>
+                    <input type="submit" name="Submit" class="grey" value="Register"/>
                     <p class="terms">
                         By clicking 'Create Account' you agree to the
                         <a href="delivery.html">Terms &amp; Conditions</a>.
                     </p>
                     <div class="clear"></div>
                 </form>
+                -->
             </div>
         </div>
         <div class="footer">

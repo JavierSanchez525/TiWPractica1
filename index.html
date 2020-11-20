@@ -57,7 +57,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <li class="active"><a href="login.html">Account</a></li>
+                        <li class="active"><a href="profile.html">Account</a></li>
                         |
                         <li><a href="checkout.html">Checkout</a></li>
                         |
@@ -73,14 +73,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="header-bottom-left">
                     <div class="logo">
-                        <a href="index.jsp"
+                        <a href="index.html"
                             ><img src="images/logo.png" alt=""
                         /></a>
                     </div>
                     <div class="menu">
                         <ul class="megamenu skyblue">
                             <li class="active grid">
-                                <a href="index.jsp">Home</a>
+                                <a href="index.html">Home</a>
                             </li>
                             <li>
                                 <a class="color4" href="womens.html">women</a>
@@ -213,13 +213,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="header-bottom-right">
                     <div class="search">
-                    <h4> Buscador por título y descripción</h4>
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-						</form>
+                        <input
+                            type="text"
+                            name="s"
+                            class="textbox"
+                            value="Search"
+                            onfocus="this.value = '';"
+                            onblur="if (this.value == '') {this.value = 'Search';}"
+                        />
+                        <input
+                            type="submit"
+                            value="Subscribe"
+                            id="submit"
+                            name="submit"
+                        />
                         <div id="response"></div>
                     </div>
                     <div class="tag-list">

@@ -1,5 +1,5 @@
-
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,9 +42,18 @@
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <li><a href="login.html">Log In</a></li>
-                        |
-                        <li><a href="register.html">Sign Up</a></li>
+                        <%
+                    		if(session.getAttribute("email") != null) { %>
+                    			 <li><a href="profile.jsp">Account</a></li> 
+                    			 |
+                    			 <li><a href="checkout.html">Checkout</a></li>
+                    			 |
+                    			 <li><a>Log off</a></li>
+                    	<%	} else { %>
+                    			<li><a href="login.html">Log In</a></li>
+          						|
+                        		<li><a href="register.html">Sign Up</a></li>
+                    	<%	} %>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -158,7 +167,9 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="color6" href="other.html">Accesorios</a>
+                                <a class="color6" href="other.html"
+                                    >Accesorios</a
+                                >
                                 <div class="megapanel">
                                     <div class="col1">
                                         <div class="h_nav">
@@ -239,83 +250,49 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="login">
+        <div class="register_account">
             <div class="wrap">
-                <div class="col_1_of_login span_1_of_login">
-                    <h4 class="title">New Customers</h4>
-                    <p>
-						Â¿No tiene cuenta todavÃ­a? Registrese hoy mismo<br></br>
-						Con una cuenta propia podrÃ¡ empezar a comprar y vender productos.<br><br>
-                    </p>
-                    <div class="button1">
-                        <a href="register.html"
-                            ><input
-                                type="submit"
-                                name="Submit"
-                                value="Create an Account"
-                        /></a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="col_1_of_login span_1_of_login">
-                    <div class="login-title">
-                        <h4 class="title">Usuarios Registrados</h4>
-                        <div id="loginbox" class="loginbox">
-                            <form
-                                action="controlador"
-                                method="post"
-                                name="login"
-                                id="login-form"
-                            >
-                                <fieldset class="input">
-                                	<input type = "hidden" name = "accion" value= "loginUsuario">
-                                    <p id="login-form-username">
-                                        <label for="modlgn_username"
-                                            >Email</label
-                                        >
-                                        <input required
-                                            id="modlgn_username"
-                                            type="text"
-                                            name="loginEmail"
-                                            class="inputbox"
-                                            size="18"
-                                            autocomplete="off"
-                                        />
-                                    </p>
-                                    <p id="login-form-password">
-                                        <label for="modlgn_passwd"
-                                            >Password</label
-                                        >
-                                        <input required
-                                            id="modlgn_passwd"
-                                            type="password"
-                                            name="loginPassword"
-                                            class="inputbox"
-                                            size="18"
-                                            autocomplete="off"
-                                        />
-                                    </p>
-                                    <div class="remember">
-                                        <p id="login-form-remember">
-                                            <label for="modlgn_remember"
-                                                ><a href="#"
-                                                    >Â¿Has olvidado tu contraseÃ±a?
-                                                </a></label
-                                            >
-                                        </p>
-                                        <input
-                                            type="submit"
-                                            name="Submit"
-                                            class="button"
-                                            value="Login"
-                                        />
-                                        <div class="clear"></div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <h4 class="title">Información de usuario</h4>
+                
+                <pre>	<strong>Nombre:</strong>	<%out.print(session.getAttribute("nombre"));%> 		</pre>
+                <pre>	<strong>Apellido:</strong>	<%out.print(session.getAttribute("apellido"));%> 	</pre>
+                <pre>	<strong>Email:</strong>		<%out.print(session.getAttribute("email"));%> 		</pre>
+                <pre>	<strong>Ciudad:</strong>	<%out.print(session.getAttribute("ciudad"));%> 		</pre>
+                <br />
+                
+                <h4 class="title">Modificar información de usuario</h4>    
+                <div>
+          			<div class="wrap">
+    		   			<form action="controlador" method="post" name="modify" id="modifyUser-form">
+    			 			<div class="col_1_of_2 span_1_of_2">
+		   			 			<div><input type="text" placeholder="Nuevo nombre" name="newName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo nombre';}"></div>
+		    					<div><input type="text" placeholder="Nuevo E-Mail" name="newEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo E-Mail';}"></div>
+		    					<div><input required type="text" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>
+		    	 			</div>
+		    	  			<div class="col_1_of_2 span_1_of_2">	
+		    					<div><input type="text" placeholder="Nuevo apellido" name="newSurname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo apellido';}"></div>		        
+		          				<div><input type="text" placeholder="Nueva ciudad" name="newCity" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva ciudad';}"></div>
+		           				<div><input type="text" placeholder="Nueva contraseña" name="newPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva contraseña';}"></div>
+		           				<input type="hidden" name="accion" value="modifyUsuario" />
+		           				<div>
+		          				</div>
+		          			</div>
+		          			<input type="submit" name="Submit" class="grey" value="Modificar"/>
+		    				<div class="clear"></div>
+		    			</form>
+    				</div>
+    			</div>
+    			<br />
+                
+                <h4 class="title">Darse de baja</h4>  
+                <strong><p style="color:red;"> Una vez tramitada la baja, no se puede dar marcha atrás. </p></strong>
+                <br />
+                <button>Eliminar</button>
+                <br /><br />
+                
+                <h4 class="title">Tus productos</h4>
+                <p>boi</p>
+
                 <div class="clear"></div>
             </div>
         </div>
@@ -512,7 +489,7 @@
                 <div class="wrap">
                     <div class="copy">
                         <p>
-                            Â© 2014 Template by
+                            © 2014 Template by
                             <a href="http://w3layouts.com" target="_blank"
                                 >w3layouts</a
                             >

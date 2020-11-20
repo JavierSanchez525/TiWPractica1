@@ -48,59 +48,83 @@ public class mainController extends HttpServlet {
 				break;
 				
 			case "usuariosRegistrados":
-				UserManager um1 = new UserManager("prueba2");
+				UserManager um1 = new UserManager("prueba1");
 				List<Usuario> lista1 = um1.findAllUsers();
 				request.setAttribute("lista", lista1);
 				
 				RequestDispatcher r2 = request.getRequestDispatcher("usuariosRegistrados.jsp");
 				r2.forward(request,response);
 				break;
-				
+			
+			/*
 			case "consultaUsuariosBBDD":
-				UserManager um2 = new UserManager("prueba2");
+				UserManager um2 = new UserManager("prueba1");
 				List<Usuario> lista2=um2.findUsersBySimilarName(request.getParameter("palabra"));
 				request.setAttribute("lista", lista2);
 				
 				RequestDispatcher r3 = request.getRequestDispatcher("usuariosRegistrados.jsp");
 				r3.forward(request,response);
 				break;
+			*/
 				
-			case "paginaBuscador":
-				RequestDispatcher p1 = request.getRequestDispatcher("paginaBuscador.jsp");
-				p1.forward(request,response);
+			case "loginUsuario":
+				System.out.println("Controlador a logear usuario");
+				UserManager lu = new UserManager("prueba1");
+				String usuarioToLogin = lu.loginUser(request, response);
+				
+				RequestDispatcher u1 = request.getRequestDispatcher(usuarioToLogin);
+				u1.forward(request,response);
+				break;
+				
+			case "registerUsuario":
+				System.out.println("Controlador a registrar usuario");
+				UserManager ru = new UserManager("prueba1");
+				String usuarioToRegister = ru.registerUser(request, response);
+				
+				RequestDispatcher r4 = request.getRequestDispatcher(usuarioToRegister);
+				r4.forward(request,response);
+				break;
+			
+			case "modifyUsuario":
+				System.out.println("Controlador a modificar usuario");
+				UserManager mu = new UserManager("prueba1");
+				String usuarioToModify = mu.modifyUser(request, response);
+				
+				RequestDispatcher r5 = request.getRequestDispatcher(usuarioToModify);
+				r5.forward(request, response);
 				break;
 				
 			case "mostrarTodos":
-				ProductoManager pm1 = new ProductoManager("prueba2");
+				ProductoManager pm1 = new ProductoManager("prueba1");
 				List<Producto> plista1=pm1.mostrarTodos();
 				request.setAttribute("lista", plista1);
-				RequestDispatcher pr1 = request.getRequestDispatcher("paginaBuscador.jsp");
+				RequestDispatcher pr1 = request.getRequestDispatcher("productosRegistrados.jsp");
 				pr1.forward(request,response);
 				break;
-			
+
 			case "buscarSencillo":
-				ProductoManager pm2 = new ProductoManager("prueba2");
+				ProductoManager pm2 = new ProductoManager("prueba1");
 				List<Producto> plista2=pm2.buscarSencillo(request.getParameter("consulta"));
 				request.setAttribute("lista", plista2);
-				RequestDispatcher pr2 = request.getRequestDispatcher("paginaBuscador.jsp");
+				RequestDispatcher pr2 = request.getRequestDispatcher("productosRegistrados.jsp");
 				pr2.forward(request,response);
 				break;
-				
+
 			case "buscarAvanzado":
-				ProductoManager pm3 = new ProductoManager("prueba2");
+				ProductoManager pm3 = new ProductoManager("prueba1");
 				List<Producto> plista3=pm3.buscarAvanzado(request.getParameter("consulta"));
 				request.setAttribute("lista", plista3);
-				RequestDispatcher pr3 = request.getRequestDispatcher("paginaBuscador.jsp");
+				RequestDispatcher pr3 = request.getRequestDispatcher("productosRegistrados.jsp");
 				pr3.forward(request,response);
 				break;
-				
+
 			case "buscarAvanzadoFiltro":
-				ProductoManager pm4 = new ProductoManager("prueba2");
+				ProductoManager pm4 = new ProductoManager("prueba1");
 				List<Producto> plista4=pm4.buscarAvanzadoFiltro(request.getParameter("Fconsulta"), request.getParameter("Fcategoria"),
 						request.getParameter("Fvendedor"), request.getParameter("Ftitulo"), request.getParameter("Fdescripcion"),
 						Integer.parseInt(request.getParameter("precioMinimo")), Integer.parseInt(request.getParameter("precioMaximo")));
 				request.setAttribute("lista", plista4);
-				RequestDispatcher pr4 = request.getRequestDispatcher("paginaBuscador.jsp");
+				RequestDispatcher pr4 = request.getRequestDispatcher("productosRegistrados.jsp");
 				pr4.forward(request,response);
 				break;
 		}

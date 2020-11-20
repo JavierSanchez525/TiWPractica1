@@ -1,9 +1,5 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,13 +53,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <li class="active"><a href="login.html">Account</a></li>
-                        |
-                        <li><a href="checkout.html">Checkout</a></li>
-                        |
-                        <li><a href="login.html">Log In</a></li>
-                        |
-                        <li><a href="register.html">Sign Up</a></li>
+                    	<%
+                    		if(session.getAttribute("email") != null) { %>
+                    			 <li><a href="profile.jsp">Account</a></li> 
+                    			 |
+                    			 <li><a href="checkout.html">Checkout</a></li>
+                    			 |
+                    			 <li><a>Log off</a></li>
+                    	<%	} else { %>
+                    			<li><a href="login.html">Log In</a></li>
+          						|
+                        		<li><a href="register.html">Sign Up</a></li>
+                    	<%	} %>
+                    	
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -213,11 +215,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <div class="header-bottom-right">
                     <div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="paginaBuscador">
-    					Acceder al buscador
-    					<input type="submit" value="Buscar" name="submit">
-						</form>
+                        <input
+                            type="text"
+                            name="s"
+                            class="textbox"
+                            value="Search"
+                            onfocus="this.value = '';"
+                            onblur="if (this.value == '') {this.value = 'Search';}"
+                        />
+                        <input
+                            type="submit"
+                            value="Subscribe"
+                            id="submit"
+                            name="submit"
+                        />
                         <div id="response"></div>
                     </div>
                     <div class="tag-list">
@@ -852,7 +863,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="wrap">
                     <div class="copy">
                         <p>
-                            © 2014 Template by
+                            ï¿½ 2014 Template by
                             <a href="http://w3layouts.com" target="_blank"
                                 >w3layouts</a
                             >

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List,java.util.ArrayList,database.*;" %>
+<%@ page import="java.util.List,java.util.ArrayList,database.*, java.util.List,java.util.ArrayList,managers.*;" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@ List<Producto> elementos= new ArrayList<Producto>();
 Object lista = request.getAttribute("lista");
   if (lista != null){
 	if(lista instanceof List){
-		 elementos = (List<Producto>)lista;
+		elementos = (List<Producto>) lista;
 		for(Producto elemento: elementos){ %>
 			<h5>Id:<%=elemento.getId() %> (Titulo: <%=elemento.getTitulo() %>) </h5>
 		<% }

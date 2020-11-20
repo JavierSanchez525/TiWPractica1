@@ -73,14 +73,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="header-bottom-left">
                     <div class="logo">
-                        <a href="index.html"
+                        <a href="index.jsp"
                             ><img src="images/logo.png" alt=""
                         /></a>
                     </div>
                     <div class="menu">
                         <ul class="megamenu skyblue">
                             <li class="active grid">
-                                <a href="index.html">Home</a>
+                                <a href="index.jsp">Home</a>
                             </li>
                             <li>
                                 <a class="color4" href="womens.html">women</a>

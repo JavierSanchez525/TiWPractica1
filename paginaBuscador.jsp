@@ -74,14 +74,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="header-bottom-left">
                     <div class="logo">
-                        <a href="index.html"
+                        <a href="index.jsp"
                             ><img src="images/logo.png" alt=""
                         /></a>
                     </div>
                     <div class="menu">
                         <ul class="megamenu skyblue">
                             <li class="active grid">
-                                <a href="index.html">Home</a>
+                                <a href="index.jsp">Home</a>
                             </li>
                             <li>
                                 <a class="color4" href="womens.html">women</a>
@@ -242,28 +242,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
         </div>
+        <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
+        <div class="letrasChulis">Buscador sencillo: Busca por nombre y descripción:</div>
        <div class="search">
                         <form action="controlador" method="post" >
 						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
     					Buscar
-    					<input type="text" name="palabra">
+    					<input type="text" name="consulta">
     					<input type="submit" value="Buscar" name="submit">
     					</form>
                         <div id="response"></div>
         </div>
-        <h3> Mirame los productos niña barato barato </h3> <a href="controlador?accion=mostrarTodos">Ver todos los productos</a>
-		<% 
-		List<Producto> elementos= new ArrayList<Producto>();
-		Object lista = request.getAttribute("lista");
-  			if (lista != null){
-				if(lista instanceof List){
-		 		elementos = (List<Producto>)lista;
-				for(Producto elemento: elementos){ %>
-					<h5>Id:<%=elemento.getId() %> (Titulo: <%=elemento.getTitulo() %>) </h5>
-				<% }
-			}
-		}%>
-    
+        <br><br><br><br>
+        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo:</div>
+		<div class="search">
+                        <form action="controlador" method="post" >
+						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzado">
+    					Buscar
+    					<input type="text" name="consulta">
+    					<input type="submit" value="Buscar" name="submit">
+    					</form>
+                        <div id="response"></div>
+        </div>
+    	<button class="botonTIW">Añade filtros</button>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

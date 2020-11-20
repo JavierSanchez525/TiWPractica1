@@ -58,6 +58,11 @@ body{
 	font-size: 1.00em;
 	padding:10px;
 }
+.letrasChulis2{
+	color: rgb(131, 131, 131);
+	font-size: 1.5em;
+	float: left;
+}
 .header-top-left{
 	width:54.5%;
 	float:left;

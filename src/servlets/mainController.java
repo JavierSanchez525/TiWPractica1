@@ -70,6 +70,11 @@ public class mainController extends HttpServlet {
 				p1.forward(request,response);
 				break;
 				
+			case "paginaBuscadorFiltros":
+				RequestDispatcher p2 = request.getRequestDispatcher("paginaBuscadorFiltros.jsp");
+				p2.forward(request,response);
+				break;
+				
 			case "mostrarTodos":
 				ProductoManager pm1 = new ProductoManager("prueba2");
 				List<Producto> plista1=pm1.mostrarTodos();
@@ -97,10 +102,9 @@ public class mainController extends HttpServlet {
 			case "buscarAvanzadoFiltro":
 				ProductoManager pm4 = new ProductoManager("prueba2");
 				List<Producto> plista4=pm4.buscarAvanzadoFiltro(request.getParameter("Fconsulta"), request.getParameter("Fcategoria"),
-						request.getParameter("Fvendedor"), request.getParameter("Ftitulo"), request.getParameter("Fdescripcion"),
 						Integer.parseInt(request.getParameter("precioMinimo")), Integer.parseInt(request.getParameter("precioMaximo")));
 				request.setAttribute("lista", plista4);
-				RequestDispatcher pr4 = request.getRequestDispatcher("paginaBuscador.jsp");
+				RequestDispatcher pr4 = request.getRequestDispatcher("paginaBuscadorFiltros.jsp");
 				pr4.forward(request,response);
 				break;
 		}

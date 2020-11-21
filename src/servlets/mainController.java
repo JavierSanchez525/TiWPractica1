@@ -65,6 +65,14 @@ public class mainController extends HttpServlet {
 				r3.forward(request,response);
 				break;
 				
+			case "principal":
+				ProductoManager p0 = new ProductoManager("prueba2");
+				List<Producto> plista0=p0.mostrarTodos();
+				request.setAttribute("lista", plista0);
+				RequestDispatcher pr0 = request.getRequestDispatcher("index.jsp");
+				pr0.forward(request,response);
+				break;
+				
 			case "paginaBuscador":
 				RequestDispatcher p1 = request.getRequestDispatcher("paginaBuscador.jsp");
 				p1.forward(request,response);

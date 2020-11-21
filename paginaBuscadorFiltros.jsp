@@ -263,7 +263,7 @@ Object lista = request.getAttribute("lista");
     					</form>
                         <div id="response"></div>
         </div>
-        <select name="Fcategoria">
+        <select class="select-css" name="Fcategoria" style="float:left;">
    			<option selected value=null> Categoría </option>
        		<optgroup label="Mujeres"> 
        			<option value="MujerCamisetas">Camisetas</option> 
@@ -290,42 +290,44 @@ Object lista = request.getAttribute("lista");
        			<option value="AccesoriosCalcetines">Calcetines</option>
    			</optgroup> 
 		</select>
-		<select name="precioMinimo">
-   			<option selected value=0> Precio Mínimo </option>
-       			<option value=5>5</option> 
-       			<option value=10>10</option> 
-       			<option value=15>15</option> 
-       			<option value=20>20</option> 
-       			<option value=25>25</option> 
-       			<option value=30>30</option> 
-       			<option value=40>40</option> 
-       			<option value=50>50</option> 
-       			<option value=60>60</option> 
-       			<option value=70>70</option> 
-       			<option value=80>80</option> 
-       			<option value=90>90</option> 
-       			<option value=100>100</option> 
-       			<option value=125>125</option> 
-       			<option value=150>150</option> 
+		<input type="number" name="precioMinimo">
+		<input type="number" name="precioMaximo">
+		<!--  <select class="select-css" name="precioMinimo" style="margin-left:2.5%;float:left">
+   			<option selected value="0"> Precio Mínimo </option>
+       			<option value="5">5</option> 
+       			<option value="10">10</option> 
+       			<option value="15">15</option> 
+       			<option value="20">20</option> 
+       			<option value="25">25</option> 
+       			<option value="30">30</option> 
+       			<option value="40">40</option> 
+       			<option value="50">50</option> 
+       			<option value="60">60</option> 
+       			<option value="70">70</option> 
+       			<option value="80">80</option> 
+       			<option value="90">90</option> 
+       			<option value="100">100</option> 
+       			<option value="125">125</option> 
+       			<option value="150">150</option> 
 		</select>
-		<select name="precioMaximo">
-   			<option selected value=0> Precio Máximo </option>
-       			<option value=5>5</option> 
-       			<option value=10>10</option> 
-       			<option value=15>15</option> 
-       			<option value=20>20</option> 
-       			<option value=25>25</option> 
-       			<option value=30>30</option> 
-       			<option value=40>40</option> 
-       			<option value=50>50</option> 
-       			<option value=60>60</option> 
-       			<option value=70>70</option> 
-       			<option value=80>80</option> 
-       			<option value=90>90</option> 
-       			<option value=100>100</option> 
-       			<option value=125>125</option> 
-       			<option value=150>150</option> 
-		</select>
+		<select class="select-css" name="precioMaximo" style="margin-left:2.5%; margin-right:2.5%;float:left">
+   			<option selected value="0"> Precio Máximo </option>
+       			<option value="5">5</option> 
+       			<option value="10">10</option> 
+       			<option value="15">15</option> 
+       			<option value="20">20</option> 
+       			<option value="25">25</option> 
+       			<option value="30">30</option> 
+       			<option value="40">40</option> 
+       			<option value="50">50</option> 
+       			<option value="60">60</option> 
+       			<option value="70">70</option> 
+       			<option value="80">80</option> 
+       			<option value="90">90</option> 
+       			<option value="100">100</option> 
+       			<option value="125">125</option> 
+       			<option value="150">150</option> 
+		</select>-->
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

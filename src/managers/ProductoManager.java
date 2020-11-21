@@ -97,11 +97,11 @@ public class ProductoManager {
 	
 	//Buscador en modo avanzado con filtros
 	@SuppressWarnings("unchecked")
-	public List<Producto> buscarAvanzadoFiltro(String Fconsulta, String Fcategoria, int precioMinimo, int precioMaximo) {
+	public List<Producto> buscarAvanzadoFiltro(String Fconsulta, String Fcategoria, String precioMinimo, String precioMaximo) {
 		List<Producto> resultado;
 		EntityManager em = emf.createEntityManager();
-		//int FprecioMinimo = Integer.parseInt(precioMinimo);
-		//int FprecioMaximo = Integer.parseInt(precioMaximo);
+		int FprecioMinimo = Integer.parseInt(precioMinimo);
+		int FprecioMaximo = Integer.parseInt(precioMaximo);
 		try {
 			
 			Query query = em.createQuery("SELECT i FROM Producto i WHERE (categoria LIKE concat('%', :Fcategoria, '%')) "

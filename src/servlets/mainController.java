@@ -102,7 +102,7 @@ public class mainController extends HttpServlet {
 			case "buscarAvanzadoFiltro":
 				ProductoManager pm4 = new ProductoManager("prueba2");
 				List<Producto> plista4=pm4.buscarAvanzadoFiltro(request.getParameter("Fconsulta"), request.getParameter("Fcategoria"),
-						Integer.parseInt(request.getParameter("precioMinimo")), Integer.parseInt(request.getParameter("precioMaximo")));
+						request.getParameter("precioMinimo"), request.getParameter("precioMaximo"));
 				request.setAttribute("lista", plista4);
 				RequestDispatcher pr4 = request.getRequestDispatcher("paginaBuscadorFiltros.jsp");
 				pr4.forward(request,response);

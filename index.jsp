@@ -304,9 +304,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			if(lista instanceof List){
 		 	elementos = (List<Producto>)lista;
 				for(Producto elemento: elementos){ %>
-				<h5>Titulo:<%=elemento.getTitulo()%>) </h5>
-			
-			
                             <div class="col_1_of_3 span_1_of_3">
                                 <a href="single.html">
                                     <div class="inner_content clearfix">
@@ -319,9 +316,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                    <%=elemento.getTitulo() %>
                                                 </p>
                                                 <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
+                                                    <span class="actual"><%=elemento.getPrecio()%>.00$</span>
                                                 </div>
                                             </div>
                                             <div class="cart-right"></div>

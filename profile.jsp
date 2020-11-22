@@ -43,10 +43,6 @@
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                    <%	if(session.getAttribute("isAdmin") != null){ %>
-                    		<li><a href="admin.jsp">Panel de Admin</a></li>
-                    		| 
-                    <% 	}  %> 
                         <li><a href="profile.jsp">Account</a></li> 
                     	|
                     	<li><a href="checkout.html">Checkout</a></li>

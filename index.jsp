@@ -55,11 +55,7 @@
                 <div class="cssmenu">
                     <ul>
                     	<%
-                    		if(session.getAttribute("email") != null) { %>
-                    		<%	if(session.getAttribute("isAdmin") != null){ %>
-                    				<li><a href="admin.jsp">Panel de Admin</a></li>
-                    				| 
-                    		<% 	}  %>  
+                    		if(session.getAttribute("email") != null) { %> 
                     			 <li><a href="profile.jsp">Account</a></li> 
                     			 |
                     			 <li><a href="checkout.html">Checkout</a></li>

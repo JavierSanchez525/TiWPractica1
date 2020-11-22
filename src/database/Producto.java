@@ -17,9 +17,15 @@ import java.util.Date;
 	@NamedQuery(name="Producto.buscarSencillo", query="SELECT i FROM Producto i where i.titulo LIKE :consulta "
 			+ "OR i.descripcion LIKE :consulta"),
 	
-	@NamedQuery(name="Producto.buscarAvanzado", query="SELECT i FROM Producto i where i.id LIKE :consulta "
-			+ "OR i.fechaCompra LIKE :consulta OR i.titulo LIKE :consulta OR i.categoria LIKE :consulta "
-			+ "OR i.descripcion LIKE :consulta")// OR i.comprador LIKE :consulta OR i.vendedor LIKE :consulta")
+	@NamedQuery(name="Producto.buscarAvanzado", query="SELECT i FROM Producto i where "
+			+ "i.fechaCompra LIKE :consulta OR i.titulo LIKE :consulta OR i.categoria LIKE :consulta "
+			+ "OR i.descripcion LIKE :consulta"),
+	
+	@NamedQuery(name="Producto.buscarAvanzadoFiltro", query="SELECT i FROM Producto i WHERE (i.categoria = :Fcategoria AND "
+					+ " i.precio >= :precioMinimo " 
+					+ "AND i.precio <= :precioMaximo) AND "
+					+ "(i.titulo LIKE :Fconsulta OR i.categoria LIKE :Fconsulta "
+					+ "OR i.descripcion LIKE :Fconsulta)")
 	 })
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;

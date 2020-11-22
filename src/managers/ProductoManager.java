@@ -97,18 +97,21 @@ public class ProductoManager {
 	
 	//Buscador en modo avanzado con filtros
 	@SuppressWarnings("unchecked")
-	public List<Producto> buscarAvanzadoFiltro(String Fconsulta, String Fcategoria, String precioMinimo, String precioMaximo) {
+	public List<Producto> buscarAvanzadoFiltro(String Fconsulta, String Fcategoria, int precioMinimo, int precioMaximo) {
 		List<Producto> resultado;
 		EntityManager em = emf.createEntityManager();
-		int FprecioMinimo = Integer.parseInt(precioMinimo);
-		int FprecioMaximo = Integer.parseInt(precioMaximo);
+		System.out.println(Fconsulta);
+		System.out.println(Fcategoria);
+		System.out.println(precioMinimo);
+		System.out.println(precioMaximo);
+		
 		try {
 			
-			Query query = em.createQuery("SELECT i FROM Producto i WHERE (categoria LIKE concat('%', :Fcategoria, '%')) "
-					+ "AND (:FprecioMinimo is NULL OR precio >= :FprecioMinimo) "
-					+ "AND (:FprecioMaximo is NULL OR precio <= :FprecioMaximo) AND (i.id LIKE concat('%', :Fconsulta, '%') " 
-					+ "OR i.vendedor LIKE concat('%', :Fconsulta, '%') OR i.titulo LIKE concat('%', :Fconsulta, '%') OR i.categoria LIKE concat('%', :Fconsulta, '%') "
-					+ "OR i.descripcion LIKE concat('%', :Fconsulta, '%') OR i.comprador LIKE concat('%', :Fconsulta, '%'))");
+			Query query = em.createNamedQuery("Producto.buscarAvanzadoFiltro", Producto.class);
+			query.setParameter("Fconsulta", "%"+Fconsulta+"%");
+			query.setParameter("Fcategoria", Fcategoria);
+			query.setParameter("precioMinimo", precioMinimo);
+			query.setParameter("precioMaximo", precioMaximo);
 			resultado = query.getResultList();
 		} finally {
 			em.close();

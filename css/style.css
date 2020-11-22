@@ -28,6 +28,10 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
+.userVis{
+	width: 20%;
+	padding-right: 10px;
+}
 body{
 	font-family: 'Exo 2', sans-serif;
 	background:#fff;
@@ -1086,6 +1090,32 @@ table {
 	width: 15%;
 }
 .register_account form input[type="password"].number {
+	width: 69.8%;
+}
+.register_account form input[type="email"], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.register_account form input[type="email"]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+}
+.register_account form input[type="email"].code {
+	width: 15%;
+}
+.register_account form input[type="email"].number {
 	width: 69.8%;
 }
 p.terms a, p.note a {

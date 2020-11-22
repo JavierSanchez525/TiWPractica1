@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List,java.util.ArrayList,database.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,10 +43,8 @@
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                    <%	if(session.getAttribute("isAdmin") != null){ %>
-                    		<li><a href="admin.jsp">Panel de Admin</a></li>
-                    		| 
-                    <% 	}  %> 
+                    	<li><a href="admin.jsp">Panel de Admin</a></li>
+                    	| 
                         <li><a href="profile.jsp">Account</a></li> 
                     	|
                     	<li><a href="checkout.html">Checkout</a></li>
@@ -249,34 +248,43 @@
         </div>
         <div class="register_account">
             <div class="wrap">
-                <h4 class="title">Información de usuario</h4>
-                <pre>	<strong>Nombre:</strong>	<%out.print(session.getAttribute("nombre"));%> 		</pre>
-                <pre>	<strong>Apellido:</strong>	<%out.print(session.getAttribute("apellido"));%> 	</pre>
-                <pre>	<strong>Email:</strong>		<%out.print(session.getAttribute("email"));%> 		</pre>
-                <pre>	<strong>Ciudad:</strong>		<%out.print(session.getAttribute("ciudad"));%> 		</pre>
-                <br />
+                <h4 class="title">Lista de usuarios</h4>
+                <a href="controlador?accion=adminVisualizarUsuarios"> Visualizar usuarios </a><br>
+                <p> </p>
+                <% 
+					List<Usuario> elementos= new ArrayList<Usuario>();
+					Object lista = request.getAttribute("listaUsuarios");
+  					if (lista != null){
+						if(lista instanceof List){
+		 					elementos = (List<Usuario>)lista; %>
+							<% 	for(Usuario elemento: elementos){ %>
+									<p>EMAIL: <%=elemento.getEmail()%>,  NOMBRE: <%=elemento.getNombre()%>,  APELLIDO: <%=elemento.getApellido()%>,  CIUDAD: <%=elemento.getCiudad()%></p>
+  							<%	} %>
+					<% } %>	
+				<%	} %>
+                <br>
                 
-                <h4 class="title">Modificar información</h4>
+                <h4 class="title">Modificar información de un usuario</h4>
                 <%
-                	if(request.getAttribute("modificacionUsuario") == "success") { %>
+                	if(request.getAttribute("adminModificacionUsuario") == "success") { %>
                 		<h5 style="color:green;padding:10px;"> Información modificada con éxito</h5>
                 <%	}
-                	if(request.getAttribute("modificacionUsuario") == "fail") { %>
+                	if(request.getAttribute("adminModificacionUsuario") == "fail") { %>
                 		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
                 <%	} %>    
                 <div>
           			<div class="wrap">
-    		   			<form action="controlador" method="post" name="modify" id="modifyUser-form">
+    		   			<form action="controlador" method="post" name="adminModify" id="adminModifyUser-form">
     			 			<div class="col_1_of_2 span_1_of_2">
 		   			 			<div><input type="text" placeholder="Nuevo nombre" name="newName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo nombre';}"></div>
 		    					<div><input type="password" placeholder="Nueva contraseña" name="newPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva contraseña';}"></div>
-		    					<div><input required type="email" placeholder="E-Mail actual" name="actualEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
+		    					<div><input required type="email" placeholder="E-Mail de usuario a modificar" name="userEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail de usuario a modificar';}"></div>
 		    	 			</div>
 		    	  			<div class="col_1_of_2 span_1_of_2">	
 		    					<div><input type="text" placeholder="Nuevo apellido" name="newSurname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo apellido';}"></div>		        
 		          				<div><input type="text" placeholder="Nueva ciudad" name="newCity" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva ciudad';}"></div>
-		    					<div><input required type="password" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
-		           				<input type="hidden" name="accion" value="modifyUsuario" />
+		    					<div><input required type="password" placeholder="Contraseña de admin" name="adminPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña de admin';}"></div>		           				
+		           				<input type="hidden" name="accion" value="adminModifyUsuario" />
 		           				<div>
 		          				</div>
 		          			</div>
@@ -287,21 +295,24 @@
     			</div>
     			<br />
                 
-                <h4 class="title">Darse de baja</h4>
+                <h4 class="title">Dar de baja a un usuario</h4>
                 <strong><p style="color:red;"> Una vez tramitada la baja, no se puede dar marcha atrás. </p></strong>
           		<%
-                	if(request.getAttribute("eliminacionUsuario") == "profile.jsp") { %>
+                	if(request.getAttribute("adminEliminacionUsuario") == "success") { %>
+                		<h5 style="color:green;padding:10px;"> Usuario eliminado con éxito</h5>
+                <%	}
+                	if(request.getAttribute("adminEliminacionUsuario") == "fail") { %>
                 		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
-                <%	} %>    
+                <%	} %>   
                 <div>
           			<div class="wrap">
-    		   			<form action="controlador" method="post" name="delete" id="deleteUser-form">
+    		   			<form action="controlador" method="post" name="adminDelete" id="adminDeleteUser-form">
     			 			<div class="col_1_of_2 span_1_of_2">
-		    					<div><input required type="email" placeholder="E-Mail actual" name="delEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
+		    					<div><input required type="email" placeholder="E-Mail de usuario a borrar" name="userEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail de usuario a borrar';}"></div>
 		    	 			</div>
 		    	  			<div class="col_1_of_2 span_1_of_2">	
-		    					<div><input required type="password" placeholder="Contraseña actual" name="delPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
-		           				<input type="hidden" name="accion" value="deleteUsuario" />
+		    					<div><input required type="password" placeholder="Contraseña de admin" name="adminPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña de admin';}"></div>		           				
+		           				<input type="hidden" name="accion" value="adminDeleteUsuario" />
 		           				<div>
 		          				</div>
 		          			</div>

@@ -72,6 +72,7 @@ public class mainController extends HttpServlet {
 				System.out.println("Controlador a logear usuario");
 				UserManager lu = new UserManager("prueba1");
 				String usuarioToLogin = lu.loginUser(request, response);
+				request.setAttribute("inicioUsuario", usuarioToLogin);
 				
 				RequestDispatcher u1 = request.getRequestDispatcher(usuarioToLogin);
 				u1.forward(request,response);
@@ -81,6 +82,7 @@ public class mainController extends HttpServlet {
 				System.out.println("Controlador a registrar usuario");
 				UserManager ru = new UserManager("prueba1");
 				String usuarioToRegister = ru.registerUser(request, response);
+				request.setAttribute("creacionUsuario", usuarioToRegister);
 				
 				RequestDispatcher r4 = request.getRequestDispatcher(usuarioToRegister);
 				r4.forward(request,response);
@@ -113,6 +115,36 @@ public class mainController extends HttpServlet {
 				
 				RequestDispatcher rlo = request.getRequestDispatcher("index.jsp");
 				rlo.forward(request, response);
+				break;
+				
+			case "adminVisualizarUsuarios":
+				System.out.println("Controlador a visualizar usuarios por Admin");
+				UserManager avu = new UserManager("prueba1");
+				List<Usuario> userList = avu.findAllUsers();
+				request.setAttribute("listaUsuarios", userList);
+				
+				RequestDispatcher ar1 = request.getRequestDispatcher("admin.jsp");
+				ar1.forward(request, response);
+				break;
+				
+			case "adminModifyUsuario":
+				System.out.println("Controlador a modificar usuario por Admin");
+				UserManager amu = new UserManager("prueba1");
+				String adminUsuarioToModify = amu.adminModifyUser(request, response);
+				request.setAttribute("adminModificacionUsuario", adminUsuarioToModify);
+				
+				RequestDispatcher ar2 = request.getRequestDispatcher("admin.jsp");
+				ar2.forward(request, response);
+				break;
+				
+			case "adminDeleteUsuario":
+				System.out.println("Controlador a borrar usuario por Admin");
+				UserManager adu = new UserManager("prueba1");
+				String adminUsuarioToDelete = adu.adminDeleteUser(request, response);
+				request.setAttribute("adminEliminacionUsuario", adminUsuarioToDelete);
+				
+				RequestDispatcher ar3 = request.getRequestDispatcher("admin.jsp");
+				ar3.forward(request, response);
 				break;
 			
 			case "mostrarTodos":

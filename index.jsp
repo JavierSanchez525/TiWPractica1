@@ -54,16 +54,20 @@
                 <div class="cssmenu">
                     <ul>
                     	<%
-                    		if(session.getAttribute("email") != null) { %> 
+                    		if(session.getAttribute("email") != null) { %>
+                    		<%	if(session.getAttribute("isAdmin") != null){ %>
+                    				<li><a href="admin.jsp">Panel de Admin</a></li>
+                    				| 
+                    		<% 	}  %>  
                     			 <li><a href="profile.jsp">Account</a></li> 
                     			 |
                     			 <li><a href="checkout.html">Checkout</a></li>
                     			 |
                     			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
                     	<%	} else { %>
-                    			<li><a href="login.html">Log In</a></li>
+                    			<li><a href="login.jsp">Log In</a></li>
           						|
-                        		<li><a href="register.html">Sign Up</a></li>
+                        		<li><a href="register.jsp">Sign Up</a></li>
                     	<%	} %>
                     	
                     </ul>

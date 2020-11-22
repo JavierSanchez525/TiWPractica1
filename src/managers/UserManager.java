@@ -95,7 +95,7 @@ public class UserManager {
 		List<Usuario> listaUsers = query.getResultList();
 		
 		if(listaUsers.isEmpty()) {
-			return "login.html";
+			return "login.jsp";
 		} else {
 			Usuario user = (Usuario)query.getSingleResult();
 			
@@ -105,31 +105,32 @@ public class UserManager {
 	        session.setAttribute("apellido", user.getApellido());
 	        session.setAttribute("ciudad", user.getCiudad());
 	        session.setAttribute("password", user.getPassword());
+	        int varAdmin = (int)user.getIsAdmin();
+	        if(varAdmin == 1) {
+	        	session.setAttribute("isAdmin", user.getIsAdmin());
+	        } else {
+	        	return "index.jsp";
+	        }
 	        
 	        return "index.jsp";
 		}	
 	}
 	
-	@SuppressWarnings("unchecked")
 	public String registerUser(HttpServletRequest request, HttpServletResponse response) {
 		EntityManager em = emf.createEntityManager();
-
+		
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		Usuario user = em.find(Usuario.class, email);
 		
-		Query query = em.createNamedQuery("Usuario.findUserLogin",Usuario.class);
-		query.setParameter("email", email);
-		query.setParameter("password", password);
-		System.out.println("RegEmail: " + email + ", " + "RegPass: " + password);
-		
-		List<Usuario> listaUsers = query.getResultList();
-		
-		if(listaUsers.isEmpty()) {
+		if(user != null) {
+			return "register.jsp";
+		} else {
+			Usuario newUser = new Usuario();
+			
+			String password = request.getParameter("password");
 			String name = request.getParameter("name");
 			String surname = request.getParameter("surname");
 			String city = request.getParameter("city");
-			
-			Usuario newUser = new Usuario();
 			
 			newUser.setEmail(email);
 			newUser.setPassword(password);
@@ -137,8 +138,6 @@ public class UserManager {
 			newUser.setApellido(surname);
 			newUser.setCiudad(city);
 			//newUser.setIsAdmin((byte)0);
-			
-			System.out.println("Nombre: " + name + ", " + "Apellido: " + surname);
 			
 			try {
 				em.getTransaction().begin();
@@ -158,12 +157,9 @@ public class UserManager {
 				em.close();
 			}
 			
-			return "login.html";
-			
-			
-		} else {
-	        return "register.html";
-		}	
+			return "login.jsp";
+		}
+
 	}
 	
 	public String modifyUser(HttpServletRequest request, HttpServletResponse response) {
@@ -267,4 +263,103 @@ public class UserManager {
 			return "profile.jsp";
 		}
 	}
+	
+	/*---------------- Admin thingies ------------------*/
+	
+	public String adminModifyUser(HttpServletRequest request, HttpServletResponse response) {
+		EntityManager em = emf.createEntityManager();
+		HttpSession currentSession = request.getSession();
+		
+		String adminPass = request.getParameter("adminPassword");
+		String sessionPass = (String)currentSession.getAttribute("password");
+		
+		String userEmail = request.getParameter("userEmail");
+		Usuario user = em.find(Usuario.class, userEmail);
+		
+		if (sessionPass.equals(adminPass) && user != null){
+			
+			String password = request.getParameter("newPassword");
+			String name = request.getParameter("newName");
+			String surname = request.getParameter("newSurname");
+			String city = request.getParameter("newCity");
+				
+			try {
+				em.getTransaction().begin();
+			
+				if(!password.isEmpty()) {
+					user.setPassword(password);
+					currentSession.setAttribute("password", password);
+				}
+				if(!name.isEmpty()) {
+					user.setNombre(name);
+					currentSession.setAttribute("nombre", name);
+				}
+				if(!surname.isEmpty()) {
+					user.setApellido(surname);
+					currentSession.setAttribute("apellido", surname);
+				}
+				if(!city.isEmpty()) {
+					user.setCiudad(city);
+					currentSession.setAttribute("ciudad", city);
+				}
+				//System.out.println("PasswordAttribute:" + currentSession.getAttribute("password") + ", NameAttribute:" + currentSession.getAttribute("nombre") + ", SurnameAttribute:" + currentSession.getAttribute("apellido"));
+
+				em.getTransaction().commit();
+			} catch (Exception ex) {
+				try {
+					if (em.getTransaction().isActive()) {
+						em.getTransaction().rollback();
+					}
+				} catch (Exception ex2) {
+					ex.printStackTrace();
+					throw ex2;
+				}
+				throw ex;
+			} finally {
+				em.close();
+			}
+			
+			return "success";
+			
+		} else {
+			return "fail";
+		}
+	}
+	
+	public String adminDeleteUser(HttpServletRequest request, HttpServletResponse response) {
+		EntityManager em = emf.createEntityManager();
+		HttpSession currentSession = request.getSession();
+		
+		String adminPass = request.getParameter("adminPassword");
+		String sessionPass = (String)currentSession.getAttribute("password");
+		
+		String userEmail = request.getParameter("userEmail");
+		Usuario user = em.find(Usuario.class, userEmail);
+		
+		if (sessionPass.equals(adminPass) && user != null){
+			try {
+				em.getTransaction().begin();
+				em.remove(user);
+				em.getTransaction().commit();
+			} catch (Exception ex) {
+				try {
+					if (em.getTransaction().isActive()) {
+						em.getTransaction().rollback();
+					}
+				} catch (Exception ex2) {
+					ex.printStackTrace();
+					throw ex2;
+				}
+				throw ex;
+			} finally {
+				em.close();
+			}
+			
+			return "success";
+			
+		} else {
+			return "fail";
+		}
+	}
+	
 }

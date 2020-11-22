@@ -12,20 +12,28 @@ import java.util.Date;
 @Entity
 @Table(name="producto")
 @NamedQueries({
+	@NamedQuery(name="Producto.buscarPorUsuario", query="SELECT i FROM Producto i where i.vendedor = :vendedor"),
+	
 	@NamedQuery(name="Producto.mostrarTodos", query="SELECT i FROM Producto i"),
 	
 	@NamedQuery(name="Producto.buscarSencillo", query="SELECT i FROM Producto i where i.titulo LIKE :consulta "
 			+ "OR i.descripcion LIKE :consulta"),
 	
-	//@NamedQuery(name="Producto.buscarAvanzado", query="SELECT i FROM Producto i where i.id LIKE :consulta "
-	//		+ "OR i.vendedor LIKE :consulta OR i.titulo LIKE :consulta OR i.categoria LIKE :consulta "
-	//		+ "OR i.descripcion LIKE :consulta OR i.comprador LIKE :consulta OR i.fechaCompra LIKE :consulta")
+	@NamedQuery(name="Producto.buscarAvanzado", query="SELECT i FROM Producto i where "
+			+ "i.fechaCompra LIKE :consulta OR i.titulo LIKE :consulta OR i.categoria LIKE :consulta "
+			+ "OR i.descripcion LIKE :consulta"),
+	
+	@NamedQuery(name="Producto.buscarAvanzadoFiltro", query="SELECT i FROM Producto i WHERE (i.categoria = :Fcategoria AND "
+					+ " i.precio >= :precioMinimo " 
+					+ "AND i.precio <= :precioMaximo) AND "
+					+ "(i.titulo LIKE :Fconsulta OR i.categoria LIKE :Fconsulta "
+					+ "OR i.descripcion LIKE :Fconsulta)")
 	 })
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private int id;
 
@@ -43,7 +51,7 @@ public class Producto implements Serializable {
 	private byte[] imagen;
 
 	@Column(nullable=false, length=30)
-	private String precio;
+	private int precio;
 
 	@Column(nullable=false, length=100)
 	private String titulo;
@@ -101,11 +109,11 @@ public class Producto implements Serializable {
 		this.imagen = imagen;
 	}
 
-	public String getPrecio() {
+	public int getPrecio() {
 		return this.precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
 

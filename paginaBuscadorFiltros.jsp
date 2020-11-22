@@ -1,10 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List,java.util.ArrayList,database.*" %>
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<%@ page import="java.util.List,java.util.ArrayList,database.*;" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Free Leoshop Website Template | Login :: w3layouts</title>
+        <title>Free Leoshop Website Template | Home :: w3layouts</title>
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -12,6 +16,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link
             href="css/style.css"
+            rel="stylesheet"
+            type="text/css"
+            media="all"
+        />
+        <link
+            href="css/form.css"
             rel="stylesheet"
             type="text/css"
             media="all"
@@ -35,7 +45,12 @@
                 $(".megamenu").megamenu();
             });
         </script>
-        <!-- dropdown -->
+        <!--start slider -->
+        <link rel="stylesheet" href="css/fwslider.css" media="all" />
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/css3-mediaqueries.js"></script>
+        <script src="js/fwslider.js"></script>
+        <!--end slider -->
         <script src="js/jquery.easydropdown.js"></script>
     </head>
     <body>
@@ -43,15 +58,13 @@
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                    <%	if(session.getAttribute("isAdmin") != null){ %>
-                    		<li><a href="admin.jsp">Panel de Admin</a></li>
-                    		| 
-                    <% 	}  %> 
-                        <li><a href="profile.jsp">Account</a></li> 
-                    	|
-                    	<li><a href="checkout.html">Checkout</a></li>
-                    	|
-                    	<li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
+                        <li class="active"><a href="login.html">Account</a></li>
+                        |
+                        <li><a href="checkout.html">Checkout</a></li>
+                        |
+                        <li><a href="login.html">Log In</a></li>
+                        |
+                        <li><a href="register.html">Sign Up</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -165,9 +178,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="color6" href="other.html"
-                                    >Accesorios</a
-                                >
+                                <a class="color6" href="other.html">Accesorios</a>
                                 <div class="megapanel">
                                     <div class="col1">
                                         <div class="h_nav">
@@ -202,23 +213,6 @@
                     </div>
                 </div>
                 <div class="header-bottom-right">
-                    <div class="search">
-                        <input
-                            type="text"
-                            name="s"
-                            class="textbox"
-                            value="Search"
-                            onfocus="this.value = '';"
-                            onblur="if (this.value == '') {this.value = 'Search';}"
-                        />
-                        <input
-                            type="submit"
-                            value="Subscribe"
-                            id="submit"
-                            name="submit"
-                        />
-                        <div id="response"></div>
-                    </div>
                     <div class="tag-list">
                         <ul class="icon1 sub-icon1 profile_img">
                             <li>
@@ -248,143 +242,66 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="register_account">
-            <div class="wrap">
-                <h4 class="title">Información de usuario</h4>
-                <pre>	<strong>Nombre:</strong>	<%out.print(session.getAttribute("nombre"));%> 		</pre>
-                <pre>	<strong>Apellido:</strong>	<%out.print(session.getAttribute("apellido"));%> 	</pre>
-                <pre>	<strong>Email:</strong>		<%out.print(session.getAttribute("email"));%> 		</pre>
-                <pre>	<strong>Ciudad:</strong>		<%out.print(session.getAttribute("ciudad"));%> 		</pre>
-                <br />
-                
-                <h4 class="title">Modificar información</h4>
-                <%
-                	if(request.getAttribute("modificacionUsuario") == "success") { %>
-                		<h5 style="color:green;padding:10px;"> Información modificada con éxito</h5>
-                <%	}
-                	if(request.getAttribute("modificacionUsuario") == "fail") { %>
-                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
-                <%	} %>    
-                <div>
-          			<div class="wrap">
-    		   			<form action="controlador" method="post" name="modify" id="modifyUser-form">
-    			 			<div class="col_1_of_2 span_1_of_2">
-		   			 			<div><input type="text" placeholder="Nuevo nombre" name="newName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo nombre';}"></div>
-		    					<div><input type="password" placeholder="Nueva contraseña" name="newPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva contraseña';}"></div>
-		    					<div><input required type="email" placeholder="E-Mail actual" name="actualEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
-		    	 			</div>
-		    	  			<div class="col_1_of_2 span_1_of_2">	
-		    					<div><input type="text" placeholder="Nuevo apellido" name="newSurname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo apellido';}"></div>		        
-		          				<div><input type="text" placeholder="Nueva ciudad" name="newCity" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva ciudad';}"></div>
-		    					<div><input required type="password" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
-		           				<input type="hidden" name="accion" value="modifyUsuario" />
-		           				<div>
-		          				</div>
-		          			</div>
-		          			<input type="submit" name="Submit" class="grey" value="Modificar"/>
-		    				<div class="clear"></div>
-		    			</form>
-    				</div>
-    			</div>
-    			<br />
-                
-                <h4 class="title">Tus productos</h4>
-                <a href="controlador?accion=visualizarProductosUsuario"> Visualizar productos </a><br>
-                <% 
-					List<Producto> elementos= new ArrayList<Producto>();
-					Object lista = request.getAttribute("listaProductosUsuario");
-  					if (lista != null){
-						if(lista instanceof List){
-		 					elementos = (List<Producto>)lista; %>
-							<% 	for(Producto elemento: elementos){ %>
-									<p>TITULO: <%=elemento.getTitulo()%>,  PRECIO: <%=elemento.getPrecio()%></p>
-  							<%	} %>
-					<% } %>	
-				<%	} %> <br>
-                <h5>¿Quieres publicar un nuevo producto? ¡Rellena el siguiente formulario!</h5>
-                <%
-                	if(request.getAttribute("publicacionProducto") == "success") { %>
-                		<h5 style="color:green;padding:10px;"> Producto publicado con éxito</h5>
-                <%	}
-                	if(request.getAttribute("publicacionProducto") == "fail") { %>
-                		<h5 style="color:red;padding:10px;"> Rellene todos los campos!</h5>
-                <%	}  
-                	if(request.getAttribute("publicacionProducto") == "failDesc") { %>
-                		<h5 style="color:red;padding:10px;"> Descripción demasiado corta!</h5>
-                <%	} %> 
-                <br />
-                <form action="controlador" method="post" name="publishProduct" id="publishProduct-form" enctype="multipart/form-data">
-                	<div class="wrap">
-  			 			<div class="col_1_of_2 span_1_of_2">
-   			 				<div><input required type="text" placeholder="Nombre" name="productName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre';}"></div>
-    						<div><input required type="number" placeholder="Precio" name="productPrice" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Precio';}"></div>
-    	 					<br />
-    						Selecciona una imagen del producto:
-    						<input required type="file" name="fileToUpload" id="fileToUpload">
-    						<br /><br />
-    					  
-    	 					<div class="Eleccion categoria">
-								<h4>Elige una Categoría</h4>
-								<select name="checkbox" required>
-									<option value="MujerCamisetas">Camiseta de mujer</option>
-  									<option value="MujerCamisas">Camisas de mujer</option>
-  									<option value="MujerPantalones">Pantalones de mujer</option>
-  									<option value="MujerAbrigos">Abrigos de mujer</option>
-  									<option value="MujerSudaderas">Sudaderas de mujer</option>
-  									<option value="MujerZapatos">Zapatos de mujer</option>
-  									<option value="MujerZapatillas">Zapatillas de mujer</option>
-  									<option value="HombreCamisetas">Camiseta de hombre</option>
-  									<option value="HombreCamisas">Camisas de hombre</option>
-  									<option value="HombrePantalones">Pantalones de hombre</option>
-  									<option value="HombreAbrigos">Abrigos de hombre</option>
-  									<option value="HombreSudaderas">Sudaderas de hombre</option>
-  									<option value="HombreZapatos">Zapatos de hombre</option>
-  									<option value="HombreZapatillas">Zapatillas de hombre</option>
- 									<option value="AccesoriosGorras">Gorras, Gorros y Sombreros</option>
- 									<option value="AccesoriosPendientes">Pendientes</option>
- 									<option value="AccesoriosColgantes">Colgantes</option>
- 									<option value="AccesoriosCalcetines">Calcetines</option>
-								</select>
-				     		</div>
-				     		<br />
-				     		<h4>Añade una descripción:</h4>
-   	 						<textarea class="Area" rows="4" cols="50" name="productDescription" form="publishProduct-form" maxlength="239" required></textarea>
-							<input type="hidden" name="accion" value="publishProducto" /> <br><br>
-							<input type="submit" name="Submit" class="grey" value="Publicar"/>
-    	 				</div>
-    	 			</div>
-    				<div class="clear"></div>
-    			</form>
-    			<br>  
-    			
-                <h4 class="title">Darse de baja</h4>
-                <strong><p style="color:red;"> Una vez tramitada la baja, no se puede dar marcha atrás. </p></strong>
-          		<%
-                	if(request.getAttribute("eliminacionUsuario") == "profile.jsp") { %>
-                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
-                <%	} %>    
-                <div>
-          			<div class="wrap">
-    		   			<form action="controlador" method="post" name="delete" id="deleteUser-form">
-    			 			<div class="col_1_of_2 span_1_of_2">
-		    					<div><input required type="email" placeholder="E-Mail actual" name="delEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
-		    	 			</div>
-		    	  			<div class="col_1_of_2 span_1_of_2">	
-		    					<div><input required type="password" placeholder="Contraseña actual" name="delPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
-		           				<input type="hidden" name="accion" value="deleteUsuario" />
-		           				<div>
-		          				</div>
-		          			</div>
-		          			<input type="submit" name="Submit" class="grey" value="Eliminar"/>
-		    				<div class="clear"></div>
-		    			</form>
-    				</div>
-    			</div>
-                <br />
-
-                <div class="clear"></div>
-            </div>
+        <% 
+List<Producto> elementos= new ArrayList<Producto>();
+Object lista = request.getAttribute("lista");
+  if (lista != null){
+	if(lista instanceof List){
+		elementos = (List<Producto>) lista;
+		for(Producto elemento: elementos){ %>
+			<h5>Id:<%=elemento.getId() %> (Titulo: <%=elemento.getTitulo() %>) </h5>
+		<% }
+	}
+}%>
+        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo y filtra por categoría y precio:</div>
+        <form action="controlador" method="post" >
+		<div class="search">
+                        
+						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzadoFiltro">
+    					Buscar
+    					<input type="text" name="Fconsulta">
+    					<input type="submit" value="Buscar" name="submit">
+    					
+                        <div id="response"></div>
         </div>
+        <select required class="select-css" name="Fcategoria" style="float:left;">
+   			<option selected value=null> Categoría </option>
+       		<optgroup label="Mujeres"> 
+       			<option value="MujerCamisetas">Camisetas</option> 
+       			<option value="MujerCamisas">Camisas</option> 
+       			<option value="MujerPantalones">Pantalones</option> 
+       			<option value="MujerAbrigos">Abrigos</option> 
+       			<option value="MujerSudaderas">Sudaderas</option> 
+       			<option value="MujerZapatillas">Zapatillas</option> 
+       			<option value="MujerZapatos">Zapatos</option> 
+   			</optgroup> 
+   			<optgroup label="Hombres"> 
+       			<option value="HombreCamisetas">Camisetas</option> 
+       			<option value="HombreCamisas">Camisas</option> 
+       			<option value="HombrePantalones">Pantalones</option> 
+       			<option value="HombreAbrigos">Abrigos</option> 
+       			<option value="HombreSudaderas">Sudaderas</option> 
+       			<option value="HombreZapatillas">Zapatillas</option> 
+       			<option value="HombreZapatos">Zapatos</option> 
+   			</optgroup> 
+   			<optgroup label="Accesorios"> 
+       			<option value="AccesoriosGorras">Gorras, gorros y sombreros</option> 
+       			<option value="AccesoriosPendientes">Pendientes</option> 
+       			<option value="AccesoriosColgantes">Colgantes y pulseras</option> 
+       			<option value="AccesoriosCalcetines">Calcetines</option>
+   			</optgroup> 
+		</select>
+		
+		
+		
+		<div class="letrasChulis3">Precio Mínimo
+		<input type="number" name="precioMinimo" min="0" required> 
+		</div>
+		<div class="letrasChulis3">Precio Máximo
+		<input type="number" name="precioMaximo" min="0" required>
+		</div>
+		<div class="clear"></div>
+		</form>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

@@ -242,6 +242,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
         </div>
+        <% 
+List<Producto> elementos= new ArrayList<Producto>();
+Object lista = request.getAttribute("lista");
+  if (lista != null){
+	if(lista instanceof List){
+		elementos = (List<Producto>) lista;
+		for(Producto elemento: elementos){ %>
+			<h5>Id:<%=elemento.getId() %> (Titulo: <%=elemento.getTitulo() %>) </h5>
+		<% }
+	}
+}%>
         <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
         <div class="letrasChulis">Buscador sencillo: Busca por nombre y descripción:</div>
        <div class="search">
@@ -264,7 +275,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     					</form>
                         <div id="response"></div>
         </div>
-    	<button class="botonTIW">Añade filtros</button>
+        <form action="controlador" method="post"><button class="botonTIW" name="accion" value="paginaBuscadorFiltros">Añade filtros</button></form>
+    	
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

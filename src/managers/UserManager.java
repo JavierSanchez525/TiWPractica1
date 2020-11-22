@@ -108,11 +108,10 @@ public class UserManager {
 	        int varAdmin = (int)user.getIsAdmin();
 	        if(varAdmin == 1) {
 	        	session.setAttribute("isAdmin", user.getIsAdmin());
+	        	return "admin.jsp";
 	        } else {
 	        	return "index.jsp";
 	        }
-	        
-	        return "index.jsp";
 		}	
 	}
 	

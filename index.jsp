@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List,java.util.ArrayList,database.*;" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -219,20 +220,11 @@
                 </div>
                 <div class="header-bottom-right">
                     <div class="search">
-                        <input
-                            type="text"
-                            name="s"
-                            class="textbox"
-                            value="Search"
-                            onfocus="this.value = '';"
-                            onblur="if (this.value == '') {this.value = 'Search';}"
-                        />
-                        <input
-                            type="submit"
-                            value="Subscribe"
-                            id="submit"
-                            name="submit"
-                        />
+                        <form action="controlador" method="post" >
+							<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="paginaBuscador">
+    						<div class="letrasChulis2"><a href="paginaBuscador.jsp" style="color:rgb(131,131,131);">Buscador</a></div>
+    						<input type="submit" value="Buscar" name="submit" style="float:right;">
+						</form>
                         <div id="response"></div>
                     </div>
                     <div class="tag-list">
@@ -307,373 +299,51 @@
                 <div class="section group">
                     <div class="cont span_2_of_3">
                         <h2 class="head">Featured Products</h2>
-                        <div class="top-box">
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic1.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic2.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="top-box">
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic3.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic4.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic5.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="top-box1">
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic6.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic7.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic8.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <h2 class="head">Staff Pick</h2>
-                        <div class="top-box1">
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic8.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic4.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic2.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <h2 class="head">New Products</h2>
-                        <div class="section group">
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic5.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic2.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic3.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                    Lorem Ipsum simply
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"
-                                                        >$12.00</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-        </div>
+                        <div class="letrasChulis"><a href="controlador?accion=principal">Ver todos los productos</a> </div> 
+                        	<% for (int i = 0; i < 3; i++){ %>
+        							<div class="top-box">
+        						<%	List<Producto> elementos= new ArrayList<Producto>();
+									Object lista = request.getAttribute("lista");
+  									if (lista != null){
+										if(lista instanceof List){
+		 									elementos = (List<Producto>)lista;
+											for(Producto elemento: elementos){ %>
+												<h5>Titulo:<%=elemento.getTitulo()%>) </h5>
+                            					<div class="col_1_of_3 span_1_of_3">
+                                					<a href="single.html">
+                                    					<div class="inner_content clearfix">
+                                        					<div class="product_image">
+                                            					<img src="images/pic.jpg" alt="" />
+                                        					</div>
+                                        					<div class="price">
+                                            					<div class="cart-left">
+                                                					<p class="title">
+                                                   						<%=elemento.getTitulo() %>
+                                                					</p>
+                                                					<div class="price1">
+                                                    					<span class="actual"
+                                                        					>$12.00</span
+                                                    					>
+                                                					</div>
+                                            					</div>
+                                            					<div class="cart-right"></div>
+                                            					<div class="clear"></div>
+                                        					</div>
+                                    					</div>
+                                					</a>
+                            					</div>
+                            		</div>
+                            		<div class="clear"></div>          
+										<% }
+										}
+									}%>
+							<%} %>
+                	</div>
+               	</div>
+               	<div class="clear"></div>
+          	</div>
+        	<div class="clear"></div>
+        </div>		          
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

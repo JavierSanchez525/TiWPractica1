@@ -56,17 +56,6 @@ public class mainController extends HttpServlet {
 				RequestDispatcher r2 = request.getRequestDispatcher("usuariosRegistrados.jsp");
 				r2.forward(request,response);
 				break;
-			
-			/*
-			case "consultaUsuariosBBDD":
-				UserManager um2 = new UserManager("prueba1");
-				List<Usuario> lista2=um2.findUsersBySimilarName(request.getParameter("palabra"));
-				request.setAttribute("lista", lista2);
-				
-				RequestDispatcher r3 = request.getRequestDispatcher("usuariosRegistrados.jsp");
-				r3.forward(request,response);
-				break;
-			*/
 				
 			case "loginUsuario":
 				System.out.println("Controlador a logear usuario");
@@ -147,37 +136,86 @@ public class mainController extends HttpServlet {
 				ar3.forward(request, response);
 				break;
 			
+			case "publishProducto":
+				System.out.println("Controlador a publicar producto");
+				ProductoManager pp = new ProductoManager("prueba1");
+				String productoToPublish = pp.publishProduct(request, response);
+				request.setAttribute("publicacionProducto", productoToPublish);
+				
+				RequestDispatcher ppr = request.getRequestDispatcher("profile.jsp");
+				ppr.forward(request,response);
+				break;
+			
+			case "visualizarProductosUsuario":
+				System.out.println("Controlador a visualizar productos para usuario");
+				ProductoManager vpu = new ProductoManager("prueba1");
+				List<Producto> productListUser = vpu.buscarPorUsuario(request, response);
+				request.setAttribute("listaProductosUsuario", productListUser);
+				
+				RequestDispatcher vpr = request.getRequestDispatcher("profile.jsp");
+				vpr.forward(request,response);
+				break;
+				
+			case "principal":
+				System.out.println("Controlador a mostrar productos en index");
+				ProductoManager p0 = new ProductoManager("prueba1");
+				List<Producto> plista0=p0.mostrarTodos();
+				request.setAttribute("lista", plista0);
+				
+				RequestDispatcher pr0 = request.getRequestDispatcher("index.jsp");
+				pr0.forward(request,response);
+				break;
+				
+			case "paginaBuscador":
+				System.out.println("Controlador a buscador");
+				RequestDispatcher p1 = request.getRequestDispatcher("paginaBuscador.jsp");
+				p1.forward(request,response);
+				break;
+				
+			case "paginaBuscadorFiltros":
+				System.out.println("Controlador a buscador con filtros");
+				RequestDispatcher p2 = request.getRequestDispatcher("paginaBuscadorFiltros.jsp");
+				p2.forward(request,response);
+				break;
+				
 			case "mostrarTodos":
+				System.out.println("Controlador a mostrar todos los productos");
 				ProductoManager pm1 = new ProductoManager("prueba1");
 				List<Producto> plista1=pm1.mostrarTodos();
 				request.setAttribute("lista", plista1);
-				RequestDispatcher pr1 = request.getRequestDispatcher("productosRegistrados.jsp");
+				
+				RequestDispatcher pr1 = request.getRequestDispatcher("paginaBuscador.jsp");
 				pr1.forward(request,response);
 				break;
-
+			
 			case "buscarSencillo":
+				System.out.println("Controlador a buscar con el buscador sencillo");
 				ProductoManager pm2 = new ProductoManager("prueba1");
 				List<Producto> plista2=pm2.buscarSencillo(request.getParameter("consulta"));
 				request.setAttribute("lista", plista2);
-				RequestDispatcher pr2 = request.getRequestDispatcher("productosRegistrados.jsp");
+				
+				RequestDispatcher pr2 = request.getRequestDispatcher("paginaBuscador.jsp");
 				pr2.forward(request,response);
 				break;
-
+				
 			case "buscarAvanzado":
+				System.out.println("Controlador a buscar con el buscador avanzado");
 				ProductoManager pm3 = new ProductoManager("prueba1");
 				List<Producto> plista3=pm3.buscarAvanzado(request.getParameter("consulta"));
 				request.setAttribute("lista", plista3);
-				RequestDispatcher pr3 = request.getRequestDispatcher("productosRegistrados.jsp");
+				
+				RequestDispatcher pr3 = request.getRequestDispatcher("paginaBuscador.jsp");
 				pr3.forward(request,response);
 				break;
-
+				
 			case "buscarAvanzadoFiltro":
+				System.out.println("Controlador a buscar con el buscador avanzado + filtros");
 				ProductoManager pm4 = new ProductoManager("prueba1");
 				List<Producto> plista4=pm4.buscarAvanzadoFiltro(request.getParameter("Fconsulta"), request.getParameter("Fcategoria"),
-						request.getParameter("Fvendedor"), request.getParameter("Ftitulo"), request.getParameter("Fdescripcion"),
 						Integer.parseInt(request.getParameter("precioMinimo")), Integer.parseInt(request.getParameter("precioMaximo")));
 				request.setAttribute("lista", plista4);
-				RequestDispatcher pr4 = request.getRequestDispatcher("productosRegistrados.jsp");
+				
+				RequestDispatcher pr4 = request.getRequestDispatcher("paginaBuscadorFiltros.jsp");
 				pr4.forward(request,response);
 				break;
 		}

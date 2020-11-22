@@ -32,6 +32,78 @@ img{max-width:100%;}
 	width: 20%;
 	padding-right: 10px;
 }
+.Area{
+	outline: none;
+	background: none;
+	font-size:0.85em;
+	font-family: 'Exo 2', sans-serif;
+	color:#777;
+	width:598px;
+	height: 60px;
+	/*padding:7px;*/
+	-webkit-apperance:none;
+	margin:0;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	resize: none;
+}
+.letrasChulis{
+	color:#A9A9A9;
+	font-size: 1.00em;
+	padding:10px;
+}
+.letrasChulis2{
+	color: rgb(131, 131, 131);
+	font-size: 1.5em;
+	float: left;
+}
+.letrasChulis3{
+	color:#A9A9A9;
+	font-size: 1.00em;
+	float: left;
+	margin-left: auto;
+}
+.select-css {
+ display: block;
+ font-size: 16px;
+ font-family: 'Arial', sans-serif;
+ font-weight: 400;
+ color: #444;
+ line-height: 1.3;
+ padding: .4em 1.4em .3em .8em;
+ width: 200px;
+ max-width: 100%; 
+ box-sizing: border-box;
+ margin: 0;
+ border: 1px solid #aaa;
+ box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+ border-radius: .3em;
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ appearance: none;
+ background-color: rgb(210, 210, 210);
+ background-repeat: no-repeat, repeat;
+ background-position: right .7em top 50%, 0 0;
+ background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+ display: none;
+}
+.select-css:hover {
+ border-color: #888;
+}
+.select-css:focus {
+ border-color: #aaa;
+ box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+ box-shadow: 0 0 0 3px -moz-mac-focusring;
+ color: #222; 
+ outline: none;
+}
+.select-css option {
+ font-weight:normal;
+}
 body{
 	font-family: 'Exo 2', sans-serif;
 	background:#fff;
@@ -1116,6 +1188,32 @@ table {
 	width: 15%;
 }
 .register_account form input[type="email"].number {
+	width: 69.8%;
+}
+.register_account form input[type="number"], .register_account form select {
+	font-size:0.95em;
+	color:#777;
+	padding: 8px;
+	outline: none;
+	margin:10px 0;
+	width:91%;
+	font-family: 'Exo 2', sans-serif;
+	border:none;
+	box-shadow:0 0 2px #aaa;
+	-webkit-box-shadow:0 0 2px #aaa;
+	-moz-box-shadow:0 0 2px #aaa;
+	-o-box-shadow:0 0 2px #aaa;
+}
+.register_account form input[type="number"]:hover, .register_account form select:hover {
+	box-shadow:0 0 4px #aaa;
+	-webkit-box-shadow:0 0 4px #aaa;
+	-moz-box-shadow:0 0 4px #aaa;
+	-o-box-shadow:0 0 4px #aaa;
+}
+.register_account form input[type="number"].code {
+	width: 15%;
+}
+.register_account form input[type="number"].number {
 	width: 69.8%;
 }
 p.terms a, p.note a {

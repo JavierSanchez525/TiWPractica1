@@ -254,13 +254,14 @@ Object lista = request.getAttribute("lista");
 	}
 }%>
         <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo y filtra por categoría y precio:</div>
+        <form action="controlador" method="post" >
 		<div class="search">
-                        <form action="controlador" method="post" >
+                        
 						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzadoFiltro">
     					Buscar
     					<input type="text" name="Fconsulta">
     					<input type="submit" value="Buscar" name="submit">
-    					</form>
+    					
                         <div id="response"></div>
         </div>
         <select class="select-css" name="Fcategoria" style="float:left;">
@@ -290,9 +291,18 @@ Object lista = request.getAttribute("lista");
        			<option value="AccesoriosCalcetines">Calcetines</option>
    			</optgroup> 
 		</select>
-		<input type="number" name="precioMinimo">
-		<input type="number" name="precioMaximo">
-		<!--  <select class="select-css" name="precioMinimo" style="margin-left:2.5%;float:left">
+		
+		
+		
+		<div class="letrasChulis3">Precio Mínimo
+		<input type="number" name="precioMinimo" min="0" required> 
+		</div>
+		<div class="letrasChulis3">Precio Máximo
+		<input type="number" name="precioMaximo" min="0" required>
+		</div>
+		</form>
+		<!--
+		  <select class="select-css" name="precioMinimo" style="margin-left:2.5%;float:left">
    			<option selected value="0"> Precio Mínimo </option>
        			<option value="5">5</option> 
        			<option value="10">10</option> 

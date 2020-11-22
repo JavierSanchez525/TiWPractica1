@@ -63,6 +63,12 @@ body{
 	font-size: 1.5em;
 	float: left;
 }
+.letrasChulis3{
+	color:#A9A9A9;
+	font-size: 1.00em;
+	float: left;
+	margin-left: auto;
+}
 
 .select-css {
  display: block;

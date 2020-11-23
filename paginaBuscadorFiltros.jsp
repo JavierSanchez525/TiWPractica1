@@ -301,7 +301,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">
                     <div class="cont span_2_of_3">
                         <h2 class="head">Productos</h2>
-                        <div class="letrasChulis"><a href="controlador?accion=principal">Ver todos los productos</a> </div> 
+                        <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
                         <div class="clear"></div>
                         <%
                         List<Producto> elementos= new ArrayList<Producto>();

@@ -12,6 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name="producto")
 @NamedQueries({
+	@NamedQuery(name="Producto.buscarPorUsuario", query="SELECT i FROM Producto i where i.vendedor = :vendedor"),
+	
 	@NamedQuery(name="Producto.mostrarTodos", query="SELECT i FROM Producto i"),
 	
 	@NamedQuery(name="Producto.buscarSencillo", query="SELECT i FROM Producto i where i.titulo LIKE :consulta "
@@ -31,7 +33,7 @@ public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private int id;
 

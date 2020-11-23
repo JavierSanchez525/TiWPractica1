@@ -13,7 +13,9 @@ import java.util.List;
 @Table(name="usuario")
 @NamedQueries({
 	@NamedQuery(name="Usuario.findAllUsers", query="SELECT u FROM Usuario u"),
-	@NamedQuery(name="Usuario.findUsersBySimilarName", query="SELECT i FROM Usuario i where i.nombre LIKE :nombre") })
+	@NamedQuery(name="Usuario.findUsersBySimilarName", query="SELECT i FROM Usuario i where i.nombre LIKE :nombre"), 
+	@NamedQuery(name="Usuario.findUserLogin", query="SELECT i FROM Usuario i where i.email = :email AND i.password = :password")
+	})
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -3,7 +3,6 @@
 #fwslider {
     position: relative;
     width:100%;
-    overflow: hidden;
 }
 
 #fwslider .slide {

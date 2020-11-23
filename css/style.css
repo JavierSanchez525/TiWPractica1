@@ -35,10 +35,13 @@ body{
 .wrap{
 	width:80%;
 	margin:0 auto;
-	-moz-transition:all .2s linear;
-	-webkit-transition:all .2s linear; 
-	-o-transition:all .2s linear; 
-	-ms-transition:all .2s linear;
+	height: auto;
+}
+.wrap1{
+	width:80%;
+	margin:0 auto;
+	height: auto;
+	overflow-y: scroll;
 }
 .botonTIW {
     border-radius: 20px;
@@ -454,7 +457,7 @@ ul.last li a:hover{
 .col_1_of_3{
 	display: block;
 	float:left;
-	margin: 1% 0 1% 2.6%;
+	/*margin: 1% 0 1% 2.6%;*/
 	box-shadow:0 0 5px #aaa;
 	-webkit-box-shadow:0 0 5px #aaa;
 	-moz-box-shadow:0 0 5px #aaa;
@@ -539,7 +542,7 @@ h2.head{
 }
 p.title{
 	color: #777;
-	font-size:1.3em;
+	font-size:0.8em;
 }
 p.title a:hover{
 	color:#7DB122;
@@ -565,11 +568,11 @@ p.title a:hover{
 	text-align: center;
 }
 .price1{
-	margin-top:10px;
+	margin-top:5px;
 }
 span.actual{
 	color:#7db122;
-	font-size:1em;
+	font-size:0.8em;
 }
 span.reducedfrom {
 	text-decoration: line-through;

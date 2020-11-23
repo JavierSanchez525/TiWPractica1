@@ -4,7 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@ page import="java.util.List,java.util.ArrayList,database.*;" %>
+<%@ page import="java.util.List,java.util.ArrayList,database.*, org.apache.commons.codec.binary.StringUtils,org.apache.commons.codec.binary.Base64;" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,13 +58,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <li class="active"><a href="login.html">Account</a></li>
-                        |
-                        <li><a href="checkout.html">Checkout</a></li>
-                        |
-                        <li><a href="login.html">Log In</a></li>
-                        |
-                        <li><a href="register.html">Sign Up</a></li>
+                        <%
+                    		if(session.getAttribute("email") != null) { %> 
+                    			 <li><a href="profile.jsp">Account</a></li> 
+                    			 |
+                    			 <li><a href="checkout.html">Checkout</a></li>
+                    			 |
+                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
+                    	<%	} else { %>
+                    			<li><a href="login.jsp">Log In</a></li>
+          						|
+                        		<li><a href="register.jsp">Sign Up</a></li>
+                    	<%	} %>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -242,17 +247,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
         </div>
-        <% 
-List<Producto> elementos= new ArrayList<Producto>();
-Object lista = request.getAttribute("lista");
-  if (lista != null){
-	if(lista instanceof List){
-		elementos = (List<Producto>) lista;
-		for(Producto elemento: elementos){ %>
-			<h5>Id:<%=elemento.getId() %> (Titulo: <%=elemento.getTitulo() %>) </h5>
-		<% }
-	}
-}%>
         <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo y filtra por categoría y precio:</div>
         <form action="controlador" method="post" >
 		<div class="search">
@@ -264,7 +258,7 @@ Object lista = request.getAttribute("lista");
     					
                         <div id="response"></div>
         </div>
-        <select class="select-css" name="Fcategoria" style="float:left;">
+        <select required class="select-css" name="Fcategoria" style="float:left;">
    			<option selected value=null> Categoría </option>
        		<optgroup label="Mujeres"> 
        			<option value="MujerCamisetas">Camisetas</option> 
@@ -300,44 +294,69 @@ Object lista = request.getAttribute("lista");
 		<div class="letrasChulis3">Precio Máximo
 		<input type="number" name="precioMaximo" min="0" required>
 		</div>
+		<div class="clear"></div>
 		</form>
-		<!--
-		  <select class="select-css" name="precioMinimo" style="margin-left:2.5%;float:left">
-   			<option selected value="0"> Precio Mínimo </option>
-       			<option value="5">5</option> 
-       			<option value="10">10</option> 
-       			<option value="15">15</option> 
-       			<option value="20">20</option> 
-       			<option value="25">25</option> 
-       			<option value="30">30</option> 
-       			<option value="40">40</option> 
-       			<option value="50">50</option> 
-       			<option value="60">60</option> 
-       			<option value="70">70</option> 
-       			<option value="80">80</option> 
-       			<option value="90">90</option> 
-       			<option value="100">100</option> 
-       			<option value="125">125</option> 
-       			<option value="150">150</option> 
-		</select>
-		<select class="select-css" name="precioMaximo" style="margin-left:2.5%; margin-right:2.5%;float:left">
-   			<option selected value="0"> Precio Máximo </option>
-       			<option value="5">5</option> 
-       			<option value="10">10</option> 
-       			<option value="15">15</option> 
-       			<option value="20">20</option> 
-       			<option value="25">25</option> 
-       			<option value="30">30</option> 
-       			<option value="40">40</option> 
-       			<option value="50">50</option> 
-       			<option value="60">60</option> 
-       			<option value="70">70</option> 
-       			<option value="80">80</option> 
-       			<option value="90">90</option> 
-       			<option value="100">100</option> 
-       			<option value="125">125</option> 
-       			<option value="150">150</option> 
-		</select>-->
+		<div class="main">
+            <div class="wrap1">
+                <div class="section group">
+                    <div class="cont span_2_of_3">
+                        <h2 class="head">Productos</h2>
+                        <div class="letrasChulis"><a href="controlador?accion=principal">Ver todos los productos</a> </div> 
+                        <div class="clear"></div>
+                        <%
+                        List<Producto> elementos= new ArrayList<Producto>();
+						Object lista = request.getAttribute("lista");
+						if (lista != null){
+							if(lista instanceof List){
+	 							elementos = (List<Producto>)lista;%>
+        							<div class="top-box">
+       
+       					 <% 	for(Producto elemento: elementos){ %>
+                            			<div class="col_1_of_3 span_1_of_3">
+                                		<a href="controlador?accion=principal">
+                                    	<div class="inner_content clearfix">
+                                        	<div class="product_image">
+                                            	<img alt="" width="300" height="273" src="<% StringBuilder sb = new StringBuilder();
+												sb.append("data:image/png;base64,");
+												sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(elemento.getImagen(), false)));
+												out.print(sb.toString()); %>">
+                                        	</div>
+                                        	<div class="price">
+                                            	<div class="cart-left">
+                                                	<p class="title">
+                                                   		<%=elemento.getTitulo() %>
+                                                	</p>
+                                                	<div class="price1">
+                                                    	<span class="actual"><%=elemento.getPrecio()%>.00$</span>
+                                                	</div>
+                                            	</div>
+                                            <div class="cart-right"></div>
+                                            <div class="clear"></div>
+                                        	</div>
+                                    	</div>
+                                		</a>
+                            			</div>
+										<%
+									}
+							}
+						}%>
+        
+                        
+                        
+                           
+                        </div>
+                        <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+		
+		
+		
+		
+		
+		
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

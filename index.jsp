@@ -1,10 +1,6 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<%@ page import="java.util.List,java.util.ArrayList,database.*;" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List,java.util.ArrayList,database.*, org.apache.commons.codec.binary.StringUtils,org.apache.commons.codec.binary.Base64;" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,13 +54,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <li class="active"><a href="login.html">Account</a></li>
-                        |
-                        <li><a href="checkout.html">Checkout</a></li>
-                        |
-                        <li><a href="login.html">Log In</a></li>
-                        |
-                        <li><a href="register.html">Sign Up</a></li>
+                    	<%
+                    		if(session.getAttribute("email") != null) { %> 
+                    			 <li><a href="profile.jsp">Account</a></li> 
+                    			 |
+                    			 <li><a href="checkout.html">Checkout</a></li>
+                    			 |
+                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
+                    	<%	} else { %>
+                    			<li><a href="login.jsp">Log In</a></li>
+          						|
+                        		<li><a href="register.jsp">Sign Up</a></li>
+                    	<%	} %>
+                    	
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -215,9 +217,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="header-bottom-right">
                     <div class="search">
                         <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="paginaBuscador">
-    					<div class="letrasChulis2"><a href="paginaBuscador.jsp" style="color:rgb(131,131,131);">Buscador</a></div>
-    					<input type="submit" value="Buscar" name="submit" style="float:right;">
+							<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="paginaBuscador">
+    						<div class="letrasChulis2"><a href="paginaBuscador.jsp" style="color:rgb(131,131,131);">Buscador</a></div>
+    						<input type="submit" value="Buscar" name="submit" style="float:right;">
 						</form>
                         <div id="response"></div>
                     </div>
@@ -305,10 +307,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
        
        					 <% 	for(Producto elemento: elementos){ %>
                             			<div class="col_1_of_3 span_1_of_3">
-                                		<a href="single.html">
+                                		<a href="controlador?accion=principal">
                                     	<div class="inner_content clearfix">
                                         	<div class="product_image">
-                                            	<img src="images/pic.jpg" alt="" />
+                                            	<img alt="" width="300" height="273" src="<% StringBuilder sb = new StringBuilder();
+												sb.append("data:image/png;base64,");
+												sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(elemento.getImagen(), false)));
+												out.print(sb.toString()); %>">
                                         	</div>
                                         	<div class="price">
                                             	<div class="cart-left">
@@ -325,12 +330,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     	</div>
                                 		</a>
                             			</div>
-                            			
-                        
 										<%
 									}
-							}%>
-						<%} %>
+							}
+						}%>
         
                         
                         
@@ -535,7 +538,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="wrap">
                     <div class="copy">
                         <p>
-                            © 2014 Template by
+                            ï¿½ 2014 Template by
                             <a href="http://w3layouts.com" target="_blank"
                                 >w3layouts</a
                             >

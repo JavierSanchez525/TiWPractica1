@@ -1,14 +1,10 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<%@ page import="java.util.List,java.util.ArrayList,database.*, org.apache.commons.codec.binary.StringUtils,org.apache.commons.codec.binary.Base64;" %>
+<%@ page contentType="text/html; charset=UTF-8"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Free Leoshop Website Template | Home :: w3layouts</title>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+        <title>Free Leoshop Website Template | Login :: w3layouts</title>
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -16,12 +12,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link
             href="css/style.css"
-            rel="stylesheet"
-            type="text/css"
-            media="all"
-        />
-        <link
-            href="css/form.css"
             rel="stylesheet"
             type="text/css"
             media="all"
@@ -45,12 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 $(".megamenu").megamenu();
             });
         </script>
-        <!--start slider -->
-        <link rel="stylesheet" href="css/fwslider.css" media="all" />
-        <script src="js/jquery-ui.min.js"></script>
-        <script src="js/css3-mediaqueries.js"></script>
-        <script src="js/fwslider.js"></script>
-        <!--end slider -->
+        <!-- dropdown -->
         <script src="js/jquery.easydropdown.js"></script>
     </head>
     <body>
@@ -58,18 +43,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <%
-                    		if(session.getAttribute("email") != null) { %> 
-                    			 <li><a href="profile.jsp">Account</a></li> 
-                    			 |
-                    			 <li><a href="checkout.html">Checkout</a></li>
-                    			 |
-                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
-                    	<%	} else { %>
-                    			<li><a href="login.jsp">Log In</a></li>
-          						|
-                        		<li><a href="register.jsp">Sign Up</a></li>
-                    	<%	} %>
+                        <li><a href="login.jsp">Log In</a></li>
+                        |
+                        <li><a href="register.jsp">Sign Up</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -218,6 +194,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
                 <div class="header-bottom-right">
+                    <div class="search">
+                        <input
+                            type="text"
+                            name="s"
+                            class="textbox"
+                            value="Search"
+                            onfocus="this.value = '';"
+                            onblur="if (this.value == '') {this.value = 'Search';}"
+                        />
+                        <input
+                            type="submit"
+                            value="Subscribe"
+                            id="submit"
+                            name="submit"
+                        />
+                        <div id="response"></div>
+                    </div>
                     <div class="tag-list">
                         <ul class="icon1 sub-icon1 profile_img">
                             <li>
@@ -247,83 +240,90 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="letrasChulis">Buscador sencillo: Busca por nombre y descripción:</div>
-       <div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <br><br><br><br>
-        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo:</div>
-		<div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzado">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <form action="controlador" method="post"><button class="botonTIW" name="accion" value="paginaBuscadorFiltros">Añade filtros</button></form>
-    	<div class="main">
-            <div class="wrap1">
-                <div class="section group">
-                    <div class="cont span_2_of_3">
-                        <h2 class="head">Productos</h2>
-                        <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
-                        <div class="clear"></div>
-                        <%
-                        List<Producto> elementos= new ArrayList<Producto>();
-						Object lista = request.getAttribute("lista");
-						if (lista != null){
-							if(lista instanceof List){
-	 							elementos = (List<Producto>)lista;%>
-        							<div class="top-box">
-       
-       					 <% 	for(Producto elemento: elementos){ %>
-                            			<div class="col_1_of_3 span_1_of_3">
-                                		<a href="controlador?accion=principal">
-                                    	<div class="inner_content clearfix">
-                                        	<div class="product_image">
-                                            	<img alt="" width="300" height="273" src="<% StringBuilder sb = new StringBuilder();
-												sb.append("data:image/png;base64,");
-												sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(elemento.getImagen(), false)));
-												out.print(sb.toString()); %>">
-                                        	</div>
-                                        	<div class="price">
-                                            	<div class="cart-left">
-                                                	<p class="title">
-                                                   		<%=elemento.getTitulo() %>
-                                                	</p>
-                                                	<div class="price1">
-                                                    	<span class="actual"><%=elemento.getPrecio()%>.00$</span>
-                                                	</div>
-                                            	</div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        	</div>
-                                    	</div>
-                                		</a>
-                            			</div>
-										<%
-									}
-							}
-						}%>
-        
-                        
-                        
-                           
-                        </div>
-                        <div class="clear"></div>
-                        </div>
+        <div class="login">
+            <div class="wrap">
+                <div class="col_1_of_login span_1_of_login">
+                    <h4 class="title">New Customers</h4>
+                    <p>
+						Â¿No tiene cuenta todavÃ­a? Registrese hoy mismo<br></br>
+						Con una cuenta propia podrÃ¡ empezar a comprar y vender productos.<br><br>
+                    </p>
+                    <div class="button1">
+                        <a href="register.jsp"
+                            ><input
+                                type="submit"
+                                name="Submit"
+                                value="Create an Account"
+                        /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
+                <div class="col_1_of_login span_1_of_login">
+                    <div class="login-title">
+                        <h4 class="title">Usuarios Registrados</h4>
+                        <%
+                			if(request.getAttribute("inicioUsuario") == "login.jsp") { %>
+                				<h5 style="color:red;padding:10px;"> 1 o más campos incorrectos</h5>
+                		<%	} %>   
+                        <div id="loginbox" class="loginbox">
+                            <form
+                                action="controlador"
+                                method="post"
+                                name="login"
+                                id="login-form"
+                            >
+                                <fieldset class="input">
+                                	<input type = "hidden" name = "accion" value= "loginUsuario">
+                                    <p id="login-form-username">
+                                        <label for="modlgn_username"
+                                            >Email</label
+                                        >
+                                        <input required
+                                            id="modlgn_username"
+                                            type="email"
+                                            name="loginEmail"
+                                            class="inputbox"
+                                            size="18"
+                                            autocomplete="off"
+                                        />
+                                    </p>
+                                    <p id="login-form-password">
+                                        <label for="modlgn_passwd"
+                                            >Password</label
+                                        >
+                                        <input required
+                                            id="modlgn_passwd"
+                                            type="password"
+                                            name="loginPassword"
+                                            class="inputbox"
+                                            size="18"
+                                            autocomplete="off"
+                                        />
+                                    </p>
+                                    <div class="remember">
+                                        <p id="login-form-remember">
+                                            <label for="modlgn_remember"
+                                                ><a href="#"
+                                                    >Â¿Has olvidado tu contraseÃ±a?
+                                                </a></label
+                                            >
+                                        </p>
+                                        <input
+                                            type="submit"
+                                            name="Submit"
+                                            class="button"
+                                            value="Login"
+                                        />
+                                        <div class="clear"></div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
             </div>
+        </div>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">
@@ -517,7 +517,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="wrap">
                     <div class="copy">
                         <p>
-                            © 2014 Template by
+                            Â© 2014 Template by
                             <a href="http://w3layouts.com" target="_blank"
                                 >w3layouts</a
                             >

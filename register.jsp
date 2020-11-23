@@ -1,14 +1,9 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<%@ page import="java.util.List,java.util.ArrayList,database.*, org.apache.commons.codec.binary.StringUtils,org.apache.commons.codec.binary.Base64;" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Free Leoshop Website Template | Home :: w3layouts</title>
+        <title>Free Leoshop Website Template | Register :: w3layouts</title>
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -16,12 +11,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link
             href="css/style.css"
-            rel="stylesheet"
-            type="text/css"
-            media="all"
-        />
-        <link
-            href="css/form.css"
             rel="stylesheet"
             type="text/css"
             media="all"
@@ -45,12 +34,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 $(".megamenu").megamenu();
             });
         </script>
-        <!--start slider -->
-        <link rel="stylesheet" href="css/fwslider.css" media="all" />
-        <script src="js/jquery-ui.min.js"></script>
-        <script src="js/css3-mediaqueries.js"></script>
-        <script src="js/fwslider.js"></script>
-        <!--end slider -->
         <script src="js/jquery.easydropdown.js"></script>
     </head>
     <body>
@@ -58,18 +41,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <%
-                    		if(session.getAttribute("email") != null) { %> 
-                    			 <li><a href="profile.jsp">Account</a></li> 
-                    			 |
-                    			 <li><a href="checkout.html">Checkout</a></li>
-                    			 |
-                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
-                    	<%	} else { %>
-                    			<li><a href="login.jsp">Log In</a></li>
-          						|
-                        		<li><a href="register.jsp">Sign Up</a></li>
-                    	<%	} %>
+                        <li><a href="login.jsp">Log In</a></li>
+                        |
+                        <li><a href="register.jsp">Sign Up</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -183,7 +157,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </li>
                             <li>
-                                <a class="color6" href="other.html">Accesorios</a>
+                                <a class="color6" href="other.html"
+                                    >Accesorios</a
+                                >
                                 <div class="megapanel">
                                     <div class="col1">
                                         <div class="h_nav">
@@ -218,6 +194,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
                 <div class="header-bottom-right">
+                    <div class="search">
+                        <input
+                            type="text"
+                            name="s"
+                            class="textbox"
+                            value="Search"
+                            onfocus="this.value = '';"
+                            onblur="if (this.value == '') {this.value = 'Search';}"
+                        />
+                        <input
+                            type="submit"
+                            value="Subscribe"
+                            id="submit"
+                            name="submit"
+                        />
+                        <div id="response"></div>
+                    </div>
                     <div class="tag-list">
                         <ul class="icon1 sub-icon1 profile_img">
                             <li>
@@ -247,83 +240,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="letrasChulis">Buscador sencillo: Busca por nombre y descripción:</div>
-       <div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <br><br><br><br>
-        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo:</div>
-		<div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzado">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <form action="controlador" method="post"><button class="botonTIW" name="accion" value="paginaBuscadorFiltros">Añade filtros</button></form>
-    	<div class="main">
-            <div class="wrap1">
-                <div class="section group">
-                    <div class="cont span_2_of_3">
-                        <h2 class="head">Productos</h2>
-                        <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
-                        <div class="clear"></div>
-                        <%
-                        List<Producto> elementos= new ArrayList<Producto>();
-						Object lista = request.getAttribute("lista");
-						if (lista != null){
-							if(lista instanceof List){
-	 							elementos = (List<Producto>)lista;%>
-        							<div class="top-box">
-       
-       					 <% 	for(Producto elemento: elementos){ %>
-                            			<div class="col_1_of_3 span_1_of_3">
-                                		<a href="controlador?accion=principal">
-                                    	<div class="inner_content clearfix">
-                                        	<div class="product_image">
-                                            	<img alt="" width="300" height="273" src="<% StringBuilder sb = new StringBuilder();
-												sb.append("data:image/png;base64,");
-												sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(elemento.getImagen(), false)));
-												out.print(sb.toString()); %>">
-                                        	</div>
-                                        	<div class="price">
-                                            	<div class="cart-left">
-                                                	<p class="title">
-                                                   		<%=elemento.getTitulo() %>
-                                                	</p>
-                                                	<div class="price1">
-                                                    	<span class="actual"><%=elemento.getPrecio()%>.00$</span>
-                                                	</div>
-                                            	</div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        	</div>
-                                    	</div>
-                                		</a>
-                            			</div>
-										<%
-									}
-							}
-						}%>
-        
-                        
-                        
-                           
-                        </div>
-                        <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+        <div class="register_account">
+            <div class="wrap">
+                <h4 class="title">Create an Account</h4>
+                <%
+                	if(request.getAttribute("creacionUsuario") == "register.jsp") { %>
+                		<h5 style="color:red;padding:10px;"> E-mail ya en uso.</h5>
+                <%	} %>               
+                <form action="controlador" method="post" name="register" id="register-form">
+    			 	<div class="col_1_of_2 span_1_of_2">
+		   			 	<div><input required type="text" placeholder="Nombre" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre';}"></div>
+		    			<div><input required type="email" placeholder="E-Mail" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}"></div>
+		          		<div><input required type="text" placeholder="Ciudad" name="city" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ciudad';}"></div>
+		    	 	</div>
+		    	  	<div class="col_1_of_2 span_1_of_2">	
+		    			<div><input required type="text" placeholder="Apellido" name="surname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Apellido';}"></div>		        
+		          		<div><input required type="password" placeholder="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"></div>
+		           		<input type="hidden" name="accion" value="registerUsuario" />
+		           		<div>
+		          		</div>
+		          	</div>
+		          	<input type="submit" name="Submit" class="grey" value="Register" />
+		          	<p class="terms">
+                        By clicking 'Create Account' you agree to the
+                        <a href="delivery.html">Terms &amp; Conditions</a>.
+                    </p>
+		    		<div class="clear"></div>
+		    	</form>
             </div>
+        </div>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">
@@ -517,7 +462,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="wrap">
                     <div class="copy">
                         <p>
-                            © 2014 Template by
+                            Â© 2014 Template by
                             <a href="http://w3layouts.com" target="_blank"
                                 >w3layouts</a
                             >

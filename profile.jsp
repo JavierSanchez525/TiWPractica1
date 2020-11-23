@@ -1,14 +1,10 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<%@ page import="java.util.List,java.util.ArrayList,database.*, org.apache.commons.codec.binary.StringUtils,org.apache.commons.codec.binary.Base64;" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List,java.util.ArrayList,database.*" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Free Leoshop Website Template | Home :: w3layouts</title>
+        <title>Free Leoshop Website Template | Login :: w3layouts</title>
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"
@@ -16,12 +12,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link
             href="css/style.css"
-            rel="stylesheet"
-            type="text/css"
-            media="all"
-        />
-        <link
-            href="css/form.css"
             rel="stylesheet"
             type="text/css"
             media="all"
@@ -45,12 +35,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 $(".megamenu").megamenu();
             });
         </script>
-        <!--start slider -->
-        <link rel="stylesheet" href="css/fwslider.css" media="all" />
-        <script src="js/jquery-ui.min.js"></script>
-        <script src="js/css3-mediaqueries.js"></script>
-        <script src="js/fwslider.js"></script>
-        <!--end slider -->
+        <!-- dropdown -->
         <script src="js/jquery.easydropdown.js"></script>
     </head>
     <body>
@@ -58,18 +43,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="wrap">
                 <div class="cssmenu">
                     <ul>
-                        <%
-                    		if(session.getAttribute("email") != null) { %> 
-                    			 <li><a href="profile.jsp">Account</a></li> 
-                    			 |
-                    			 <li><a href="checkout.html">Checkout</a></li>
-                    			 |
-                    			 <li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
-                    	<%	} else { %>
-                    			<li><a href="login.jsp">Log In</a></li>
-          						|
-                        		<li><a href="register.jsp">Sign Up</a></li>
-                    	<%	} %>
+                        <li><a href="profile.jsp">Account</a></li> 
+                    	|
+                    	<li><a href="checkout.html">Checkout</a></li>
+                    	|
+                    	<li><a href="controlador?accion=logOffUsuario"> Log Off </a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -183,7 +161,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </li>
                             <li>
-                                <a class="color6" href="other.html">Accesorios</a>
+                                <a class="color6" href="other.html"
+                                    >Accesorios</a
+                                >
                                 <div class="megapanel">
                                     <div class="col1">
                                         <div class="h_nav">
@@ -218,6 +198,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
                 <div class="header-bottom-right">
+                    <div class="search">
+                        <input
+                            type="text"
+                            name="s"
+                            class="textbox"
+                            value="Search"
+                            onfocus="this.value = '';"
+                            onblur="if (this.value == '') {this.value = 'Search';}"
+                        />
+                        <input
+                            type="submit"
+                            value="Subscribe"
+                            id="submit"
+                            name="submit"
+                        />
+                        <div id="response"></div>
+                    </div>
                     <div class="tag-list">
                         <ul class="icon1 sub-icon1 profile_img">
                             <li>
@@ -247,83 +244,239 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="letrasChulis">Buscador sencillo: Busca por nombre y descripción:</div>
-       <div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarSencillo">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <br><br><br><br>
-        <div class="letrasChulis">Buscador avanzado: Busca por cualquier campo:</div>
-		<div class="search">
-                        <form action="controlador" method="post" >
-						<input class="textbox" type="hidden" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" name="accion" value="buscarAvanzado">
-    					Buscar
-    					<input type="text" name="consulta">
-    					<input type="submit" value="Buscar" name="submit">
-    					</form>
-                        <div id="response"></div>
-        </div>
-        <form action="controlador" method="post"><button class="botonTIW" name="accion" value="paginaBuscadorFiltros">Añade filtros</button></form>
-    	<div class="main">
-            <div class="wrap1">
-                <div class="section group">
-                    <div class="cont span_2_of_3">
-                        <h2 class="head">Productos</h2>
-                        <div class="letrasChulis"><a href="controlador?accion=mostrarTodos">Ver todos los productos</a> </div> 
-                        <div class="clear"></div>
-                        <%
-                        List<Producto> elementos= new ArrayList<Producto>();
-						Object lista = request.getAttribute("lista");
-						if (lista != null){
-							if(lista instanceof List){
-	 							elementos = (List<Producto>)lista;%>
-        							<div class="top-box">
-       
-       					 <% 	for(Producto elemento: elementos){ %>
-                            			<div class="col_1_of_3 span_1_of_3">
-                                		<a href="controlador?accion=principal">
-                                    	<div class="inner_content clearfix">
-                                        	<div class="product_image">
-                                            	<img alt="" width="300" height="273" src="<% StringBuilder sb = new StringBuilder();
-												sb.append("data:image/png;base64,");
-												sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(elemento.getImagen(), false)));
-												out.print(sb.toString()); %>">
-                                        	</div>
-                                        	<div class="price">
-                                            	<div class="cart-left">
-                                                	<p class="title">
-                                                   		<%=elemento.getTitulo() %>
-                                                	</p>
-                                                	<div class="price1">
-                                                    	<span class="actual"><%=elemento.getPrecio()%>.00$</span>
-                                                	</div>
-                                            	</div>
-                                            <div class="cart-right"></div>
-                                            <div class="clear"></div>
-                                        	</div>
-                                    	</div>
-                                		</a>
-                            			</div>
-										<%
-									}
-							}
-						}%>
-        
-                        
-                        
-                           
-                        </div>
-                        <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+        <div class="register_account">
+            <div class="wrap">
+                <h4 class="title">Información de usuario</h4>
+                <pre>	<strong>Nombre:</strong>	<%out.print(session.getAttribute("nombre"));%> 		</pre>
+                <pre>	<strong>Apellido:</strong>	<%out.print(session.getAttribute("apellido"));%> 	</pre>
+                <pre>	<strong>Email:</strong>		<%out.print(session.getAttribute("email"));%> 		</pre>
+                <pre>	<strong>Ciudad:</strong>		<%out.print(session.getAttribute("ciudad"));%> 		</pre>
+                <br />
+                
+                <h4 class="title">Modificar información</h4>
+                <%
+                	if(request.getAttribute("modificacionUsuario") == "success") { %>
+                		<h5 style="color:green;padding:10px;"> Información modificada con éxito</h5>
+                <%	}
+                	if(request.getAttribute("modificacionUsuario") == "fail") { %>
+                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
+                <%	} %>    
+                <div>
+          			<div class="wrap">
+    		   			<form action="controlador" method="post" name="modify" id="modifyUser-form">
+    			 			<div class="col_1_of_2 span_1_of_2">
+		   			 			<div><input type="text" placeholder="Nuevo nombre" name="newName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo nombre';}"></div>
+		    					<div><input type="password" placeholder="Nueva contraseña" name="newPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva contraseña';}"></div>
+		    					<div><input required type="email" placeholder="E-Mail actual" name="actualEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
+		    	 			</div>
+		    	  			<div class="col_1_of_2 span_1_of_2">	
+		    					<div><input type="text" placeholder="Nuevo apellido" name="newSurname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo apellido';}"></div>		        
+		          				<div><input type="text" placeholder="Nueva ciudad" name="newCity" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nueva ciudad';}"></div>
+		    					<div><input required type="password" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
+		           				<input type="hidden" name="accion" value="modifyUsuario" />
+		           				<div>
+		          				</div>
+		          			</div>
+		          			<input type="submit" name="Submit" class="grey" value="Modificar información"/>
+		    				<div class="clear"></div>
+		    			</form>
+    				</div>
+    			</div>
+    			<br />
+                
+                <h4 class="title">Tus productos</h4>
+                <a href="controlador?accion=visualizarProductosUsuario"> Visualizar productos </a><br>
+                <% 
+					List<Producto> elementos= new ArrayList<Producto>();
+					Object lista = request.getAttribute("listaProductosUsuario");
+  					if (lista != null){
+						if(lista instanceof List){
+		 					elementos = (List<Producto>)lista; %>
+							<% 	for(Producto elemento: elementos){ %>
+									<p>ID:<%=elemento.getId()%>,  TITULO: <%=elemento.getTitulo()%>,  CATEGORIA: <%=elemento.getCategoria()%>,  PRECIO: <%=elemento.getPrecio()%></p>
+									<pre>	DESCRIPCIÓN: <%=elemento.getDescripcion()%></pre>
+  							<%	} %>
+					<% } %>	
+				<%	} %> <br>
+                <h5>¿Quieres publicar un nuevo producto? ¡Rellena el siguiente formulario!</h5>
+                <%
+                	if(request.getAttribute("publicacionProducto") == "success") { %>
+                		<h5 style="color:green;padding:10px;"> Producto publicado con éxito</h5>
+                <%	}
+                	if(request.getAttribute("publicacionProducto") == "fail") { %>
+                		<h5 style="color:red;padding:10px;"> Rellene todos los campos!</h5>
+                <%	}  
+                	if(request.getAttribute("publicacionProducto") == "failDesc") { %>
+                		<h5 style="color:red;padding:10px;"> Descripción demasiado corta!</h5>
+                <%	} %> 
+                <br />
+                <form action="controlador" method="post" name="publishProduct" id="publishProduct-form" enctype="multipart/form-data">
+                	<div class="wrap">
+  			 			<div class="col_1_of_2 span_1_of_2">
+   			 				<div><input required type="text" placeholder="Nombre" name="productName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre';}"></div>
+    						<div><input required type="number" placeholder="Precio" name="productPrice" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Precio';}"></div>
+    	 					<br />
+    						Selecciona una imagen del producto:
+    						<input required type="file" name="fileToUpload" id="fileToUpload">
+    						<br /><br />
+    					  
+    	 					<div class="Eleccion categoria">
+								<h4>Elige una Categoría</h4>
+								<select name="checkbox" required>
+									<option value="MujerCamisetas">Camiseta de mujer</option>
+  									<option value="MujerCamisas">Camisas de mujer</option>
+  									<option value="MujerPantalones">Pantalones de mujer</option>
+  									<option value="MujerAbrigos">Abrigos de mujer</option>
+  									<option value="MujerSudaderas">Sudaderas de mujer</option>
+  									<option value="MujerZapatos">Zapatos de mujer</option>
+  									<option value="MujerZapatillas">Zapatillas de mujer</option>
+  									<option value="HombreCamisetas">Camiseta de hombre</option>
+  									<option value="HombreCamisas">Camisas de hombre</option>
+  									<option value="HombrePantalones">Pantalones de hombre</option>
+  									<option value="HombreAbrigos">Abrigos de hombre</option>
+  									<option value="HombreSudaderas">Sudaderas de hombre</option>
+  									<option value="HombreZapatos">Zapatos de hombre</option>
+  									<option value="HombreZapatillas">Zapatillas de hombre</option>
+ 									<option value="AccesoriosGorras">Gorras, Gorros y Sombreros</option>
+ 									<option value="AccesoriosPendientes">Pendientes</option>
+ 									<option value="AccesoriosColgantes">Colgantes</option>
+ 									<option value="AccesoriosCalcetines">Calcetines</option>
+								</select>
+				     		</div>
+				     		<br />
+				     		<h4>Añade una descripción:</h4>
+   	 						<textarea class="Area" rows="4" cols="50" name="productDescription" form="publishProduct-form" maxlength="239" required></textarea>
+							<input type="hidden" name="accion" value="publishProducto" /> <br><br>
+							<input type="submit" name="Submit" class="grey" value="Publicar producto"/>
+    	 				</div>
+    	 			</div>
+    				<div class="clear"></div>
+    			</form>
+    			<br>  
+    			
+    			<h4 class="title">Modificación de tus productos</h4>
+    			<%
+                	if(request.getAttribute("modificacionProducto") == "success") { %>
+                		<h5 style="color:green;padding:10px;"> Producto modificado con éxito</h5>
+                <%	}
+                	if(request.getAttribute("modificacionProducto") == "fail") { %>
+                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
+                <%	}
+                	if(request.getAttribute("modificacionProducto") == "failProd") { %>
+            		<h5 style="color:red;padding:10px;"> ID de producto incorrecto</h5>
+            	<%	}
+                	if(request.getAttribute("modificacionProducto") == "failCampos") { %>
+                		<h5 style="color:red;padding:10px;"> Elija al menos 1 campo!</h5>
+                <%	} %>    
+                <form action="controlador" method="post" name="modifyProduct" id="modifyProduct-form" enctype="multipart/form-data">
+                	<div class="wrap">
+  			 			<div class="col_1_of_2 span_1_of_2">
+  			 				<div><input required type="number" placeholder="ID de producto a modificar" name="productID" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'ID de producto a modificar';}"></div>
+   			 				<div><input type="text" placeholder="Nuevo nombre" name="newProductName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo nombre';}"></div>
+    						<div><input type="number" placeholder="Nuevo precio" name="newProductPrice" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nuevo precio';}"></div>
+    	 					<br />
+    						Nueva imagen de producto:
+    						<input type="file" name="newFileToUpload" id="newFileToUpload">
+    						<br /><br />
+    					  
+    	 					<div class="Eleccion categoria">
+								<h4>Nueva Categoría</h4>
+								<select name="newCheckbox">
+									<option value="">Sin cambios</option>
+									<option value="MujerCamisetas">Camiseta de mujer</option>
+  									<option value="MujerCamisas">Camisas de mujer</option>
+  									<option value="MujerPantalones">Pantalones de mujer</option>
+  									<option value="MujerAbrigos">Abrigos de mujer</option>
+  									<option value="MujerSudaderas">Sudaderas de mujer</option>
+  									<option value="MujerZapatos">Zapatos de mujer</option>
+  									<option value="MujerZapatillas">Zapatillas de mujer</option>
+  									<option value="HombreCamisetas">Camiseta de hombre</option>
+  									<option value="HombreCamisas">Camisas de hombre</option>
+  									<option value="HombrePantalones">Pantalones de hombre</option>
+  									<option value="HombreAbrigos">Abrigos de hombre</option>
+  									<option value="HombreSudaderas">Sudaderas de hombre</option>
+  									<option value="HombreZapatos">Zapatos de hombre</option>
+  									<option value="HombreZapatillas">Zapatillas de hombre</option>
+ 									<option value="AccesoriosGorras">Gorras, Gorros y Sombreros</option>
+ 									<option value="AccesoriosPendientes">Pendientes</option>
+ 									<option value="AccesoriosColgantes">Colgantes</option>
+ 									<option value="AccesoriosCalcetines">Calcetines</option>
+								</select>
+				     		</div>
+				     		<br />
+				     		<h4>Nueva descripción:</h4><br>
+   	 						<textarea class="Area" rows="4" cols="50" name="NewProductDescription" form="modifyProduct-form" maxlength="239"></textarea>
+							<input type="hidden" name="accion" value="modifyProducto" /> 
+							<br><br>
+							<input type="submit" name="Submit" class="grey" value="Modificar producto"/>
+    	 				</div>
+    	 				<div class="col_1_of_2 span_1_of_2">
+    	 					<div><input required type="password" placeholder="Contraseña actual" name="actualPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>
+    	 				</div>
+    	 			</div>
+    				<div class="clear"></div>
+    			</form>
+    			<br>  
+    			
+    			<h4 class="title">Eliminar uno de tus productos</h4>
+                <strong><p style="color:red;"> Una vez tramitada la baja, no se puede dar marcha atrás. </p></strong>
+          		<%
+                	if(request.getAttribute("eliminacionProducto") == "success") { %>
+                		<h5 style="color:green;padding:10px;"> Producto eliminado con éxito</h5>
+                <%	}
+          			if(request.getAttribute("eliminacionProducto") == "failProd") { %>
+        				<h5 style="color:red;padding:10px;"> ID de producto incorrecto</h5>
+        		<%	}
+                	if(request.getAttribute("eliminacionProducto") == "fail") { %>
+                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
+                <%	} %>    
+                <div>
+          			<div class="wrap">
+    		   			<form action="controlador" method="post" name="deleteProduct" id="deleteProduct-form">
+    			 			<div class="col_1_of_2 span_1_of_2">
+		    					<div><input required type="number" placeholder="ID de producto a borrar" name="delProductID" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
+		    	 			</div>
+		    	  			<div class="col_1_of_2 span_1_of_2">	
+		    					<div><input required type="password" placeholder="Contraseña actual" name="delPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
+		           				<input type="hidden" name="accion" value="deleteProducto" />
+		           				<div>
+		          				</div>
+		          			</div>
+		          			<input type="submit" name="Submit" class="grey" value="Eliminar producto"/>
+		    				<div class="clear"></div>
+		    			</form>
+    				</div>
+    			</div>    
+                <br>
+                
+                <h4 class="title">Darse de baja</h4>
+                <strong><p style="color:red;"> Una vez tramitada la baja, no se puede dar marcha atrás. </p></strong>
+          		<%
+                	if(request.getAttribute("eliminacionUsuario") == "profile.jsp") { %>
+                		<h5 style="color:red;padding:10px;"> 1 o más campos de comprobación incorrectos</h5>
+                <%	} %>    
+                <div>
+          			<div class="wrap">
+    		   			<form action="controlador" method="post" name="delete" id="deleteUser-form">
+    			 			<div class="col_1_of_2 span_1_of_2">
+		    					<div><input required type="email" placeholder="E-Mail actual" name="delEmail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail actual';}"></div>
+		    	 			</div>
+		    	  			<div class="col_1_of_2 span_1_of_2">	
+		    					<div><input required type="password" placeholder="Contraseña actual" name="delPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña actual';}"></div>		           				
+		           				<input type="hidden" name="accion" value="deleteUsuario" />
+		           				<div>
+		          				</div>
+		          			</div>
+		          			<input type="submit" name="Submit" class="grey" value="Darse de baja"/>
+		    				<div class="clear"></div>
+		    			</form>
+    				</div>
+    			</div>
+                <br />
+
+                <div class="clear"></div>
             </div>
+        </div>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">

@@ -289,61 +289,59 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <!--/slider -->
         <div class="main">
-            <div class="wrap">
+            <div class="wrap1">
                 <div class="section group">
                     <div class="cont span_2_of_3">
-                        <h2 class="head">Featured Products</h2>
+                        <h2 class="head">Productos</h2>
                         <div class="letrasChulis"><a href="controlador?accion=principal">Ver todos los productos</a> </div> 
                         <div class="clear"></div>
-                        <%for (int i = 0; i < 3; i++){ %>
-        				<div class="top-box">
+                        <%
+                        List<Producto> elementos= new ArrayList<Producto>();
+						Object lista = request.getAttribute("lista");
+						if (lista != null){
+							if(lista instanceof List){
+	 							elementos = (List<Producto>)lista;%>
+        							<div class="top-box">
        
-        <% 
-		List<Producto> elementos= new ArrayList<Producto>();
-		Object lista = request.getAttribute("lista");
-  		if (lista != null){
-			if(lista instanceof List){
-		 	elementos = (List<Producto>)lista;
-				for(Producto elemento: elementos){ %>
-                            <div class="col_1_of_3 span_1_of_3">
-                                <a href="single.html">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="images/pic.jpg" alt="" />
-                                        </div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">
-                                                   <%=elemento.getTitulo() %>
-                                                </p>
-                                                <div class="price1">
-                                                    <span class="actual"><%=elemento.getPrecio()%>.00$</span>
-                                                </div>
-                                            </div>
+       					 <% 	for(Producto elemento: elementos){ %>
+                            			<div class="col_1_of_3 span_1_of_3">
+                                		<a href="single.html">
+                                    	<div class="inner_content clearfix">
+                                        	<div class="product_image">
+                                            	<img src="images/pic.jpg" alt="" />
+                                        	</div>
+                                        	<div class="price">
+                                            	<div class="cart-left">
+                                                	<p class="title">
+                                                   		<%=elemento.getTitulo() %>
+                                                	</p>
+                                                	<div class="price1">
+                                                    	<span class="actual"><%=elemento.getPrecio()%>.00$</span>
+                                                	</div>
+                                            	</div>
                                             <div class="cart-right"></div>
                                             <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            </div>
-                            <div class="clear"></div>
+                                        	</div>
+                                    	</div>
+                                		</a>
+                            			</div>
+                            			
                         
-		<% }
-	}
-}%>
-<%} %>
+										<%
+									}
+							}%>
+						<%} %>
         
                         
                         
                            
                         </div>
+                        <div class="clear"></div>
                         </div>
                     </div>
                     <div class="clear"></div>
                 </div>
             </div>
-        </div>
         <div class="footer">
             <div class="footer-middle">
                 <div class="wrap">
